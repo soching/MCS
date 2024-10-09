@@ -1,0 +1,236 @@
+﻿@model Group_Task.Models.PurchaseRequest
+
+@{
+    ViewData["Title"] = "Create";
+}
+<script type="text/javascript">
+    $(function () {
+        $("#date-picker").datepicker({
+            dateFormat: 'dd-M-yy'
+        });
+
+    });
+
+
+
+
+</script>
+
+<div class="page-bar">
+    <div class="page-breadcrumb">
+        <a class="fw-bold font-dark text-dark " asp-controller="Home">Home</a> |
+        <a class="text-dark" asp-area="" asp-controller="PurchaseRequest" asp-action="Index">Request List</a> |
+        <span>Add New</span>
+    </div>
+    <div class="page-toolbar">
+        <i class="bi-calendar-day me-2"></i>
+        <span class="thin text-uppercase hidden-xs">August 20, 2024 - September 18, 2024</span>
+    </div>
+</div>
+
+<div class="page-create-request​ border box-shadow mt-3">
+    <div class="page-title-create p-1" style="margin-top:-1rem;">
+        <div class="portlet-bordered">
+            <div class="create-title" style="font-size:12px">
+                <span class="fw-bold font-dark text-uppercase">Create</span>
+                <span>Request</span>
+            </div>
+            <div class="page-back">
+                <a asp-controller="PurchaseRequests" asp-action="Index" class="rounded-circle btn-outline-light border border-secondary">
+                    <img class="m-2" src="~/lib/bootstrap-icons/icons/reply-all.svg" width="15" />
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="page-create-input">
+        <div class="m-2 ">
+            <div class="p-2 ">
+                <form asp-action="Create" class="d-flex flex-sm-wrap gap-3">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label bold" for="request-type">Request type <span class="required" style="color:red;">*</span></label>
+                                <select class="form-select form-select-sm" id="request-type" style="height:38px;">
+                                    <option selected value="1">Request with BOQ</option>
+                                    <option value="2">Request with none BOQ</option>
+                                    <option value="3">Request with Temporary BOQ</option>
+                                </select>
+                            </div>
+                        </div> ​
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label" asp-for="TransactionNo"><strong>Transaction No</strong><span class="required" style="color:red;">*</span></label>
+                                <input asp-for="TransactionNo" class="form-control"/>
+
+                            </div>
+                        </div>    
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label" asp-for="TransactionDate"><strong>Transaction Date</strong><span class="required" style="color:red;">*</span></label>
+                                <input asp-for="TransactionDate" class="form-control"/>
+                            </div>
+                        </div>   
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label" asp-for="DeliveryDate"><strong>DeliveryDate</strong><span class="required" style="color:red;">*</span></label>
+                                <input asp-for="DeliveryDate" id="date-picker" class="form-control"/>
+
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label asp-for="Note" class="control-label">Note</label>
+                                ​<textarea class="form-control" asp-for="Note" aria-label="With textarea"></textarea>
+                            </div>
+                        </div> ​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label">file Support</label>
+                                <input  class="form-control"/>
+                            </div>
+                        </div> 
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label">Warehouse</label>
+                                <input  class="form-control"/>
+                            </div>
+                        </div> 
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label">Building</label>
+                                <input  class="form-control"/>
+                            </div>
+                        </div> 
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label">House No</label>
+                                <input  class="form-control"/>
+                            </div>
+                        </div> 
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label">Working Type</label>
+                                <input  class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label">BOQ No</label>
+                                <input  class="form-control"/>
+                            </div>
+                        </div>
+                         <div class="col-md-12 mt-3 bg-info">
+                            <div class="form-group">
+                                <label class="control-label">San Now</label>
+                                <input type="text" class="form-control" />
+                                <button style=" border-radius:5px; background-color:steelblue;">San Now</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                    <div class="table-scrollable mt-5">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                               <tr style="font-size:smaller;">
+                               <th style="width: 3%;" class="all">ID</th>
+                               <th>No</th>
+                               <th>Items Material</th>
+                               <th>UOM</th>
+                               <th>Qty In-Stock</th>
+                               <th>BOQ Set</th>
+                               <th>Remain Request</th>
+                               <th>Qty</th>
+                               <th>Remark</th>
+                               <th><a href="#">Add</a></th>
+                               </tr>
+                            </thead>
+                        <tbody>
+                        </tbody>
+                        </table>
+                    </div>
+                    </div>
+
+                  <hr/>
+                  <div class="col-md-12 d-flex justify-content-end align-items-end">
+                    <div class="form-group " style=" margin: 5px 0px; ">
+                <input type="submit" value="Create" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-danger">cancle</a>
+            </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>  
+</div>
+                                
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+}
+
+@* <div class="form-group ">
+    <label class="control-label">Request Type</label>
+    <select class="form-select form-select-sm" id="zone" style="width: 230px;height:38px;">
+        <option selected>Request With BoQ</option>
+        <option value="value">Request With None BoQ</option>
+        <option value="value">Request With Temporary BoQ</option>
+    </select>
+</div>
+<div class="form-group ">
+    <label asp-for="TransactionNo" class="control-label"></label>
+    <input asp-for="TransactionNo" class="form-control"/>
+    <span asp-validation-for="TransactionNo" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="TransactionDate" class="control-label"></label>
+    @Html.EditorFor(model => model.TransactionDate,
+            new { htmlAttributes = new { @class = "form-control date-picker" } })
+</div>
+<div class="form-group">
+    <label asp-for="DeliveryDate" class="control-label"></label>
+    <input asp-for="DeliveryDate" id="reference_date" class="form-control"/>
+    <span asp-validation-for="DeliveryDate" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label class="control-label">Note</label>
+    <input asp-for="Note" class="form-control"/>
+
+</div>
+<div class="form-group">
+    <label class="control-label">Warehouse</label>
+    <input asp-for="Department" class="form-control"/>
+
+</div>
+<div class="form-group">
+    <label class="control-label">Building</label>
+    <input for="Building" class="form-control"/>
+
+</div>
+<div class="form-group">
+    <label class="control-label">House No</label>
+    <input for="HouseNo" class="form-control"/>
+
+</div>
+<div class="form-group">
+    <label class="control-label">Working Type</label>
+    <input for="WorkingType" class="form-control"/>
+</div>
+<div class="form-group">
+    <label class="control-label">BOQ No</label>
+    <input for="BOQNo" class="form-control"/>
+
+</div>
+<div class="form-group">
+    San Now
+    <button></button>
+    <input for="BOQNo" class="form-control"/>
+</div>
+
+<div class="form-group" style=" margin: 5px 0px; background-color:aqua;">
+    <input type="submit" value="Create" class="btn btn-primary" />
+    <a asp-action="Index" class="btn btn-primary">Back to List</a>
+</div>
+*@

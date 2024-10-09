@@ -1,0 +1,84 @@
+﻿@model Group_Task.Models.TaskMaster
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>TaskMaster</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="TaskMasterId" />
+            <div class="form-group">
+                <label asp-for="TaskGroup" class="control-label"></label>
+                <input asp-for="TaskGroup" class="form-control" />
+                <span asp-validation-for="TaskGroup" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TaskCode" class="control-label"></label>
+                <input asp-for="TaskCode" class="form-control" />
+                <span asp-validation-for="TaskCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TaskName" class="control-label"></label>
+                <input asp-for="TaskName" class="form-control" />
+                <span asp-validation-for="TaskName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <input asp-for="Status" class="form-control" />
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TaskType" class="control-label"></label>
+                <input asp-for="TaskType" class="form-control" />
+                <span asp-validation-for="TaskType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Category" class="control-label"></label>
+                <input asp-for="Category" class="form-control" />
+                <span asp-validation-for="Category" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReferenceNum" class="control-label"></label>
+                <input asp-for="ReferenceNum" class="form-control" />
+                <span asp-validation-for="ReferenceNum" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OldCode" class="control-label"></label>
+                <input asp-for="OldCode" class="form-control" />
+                <span asp-validation-for="OldCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OrderNo" class="control-label"></label>
+                <input asp-for="OrderNo" class="form-control" />
+                <span asp-validation-for="OrderNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FormularSide" class="control-label"></label>
+                <input asp-for="FormularSide" class="form-control" />
+                <span asp-validation-for="FormularSide" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FormularMiddle" class="control-label"></label>
+                <input asp-for="FormularMiddle" class="form-control" />
+                <span asp-validation-for="FormularMiddle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,13 @@
+﻿
+.ui-draggable-handle {
+    touch-action: none;
+}
+
+.modal-header{
+    border:1px solid #aaaaaa;
+    background:#cccccc;
+    color:#222222;
+    font-weight:bold;
+    margin:5px;
+}
+

@@ -1,0 +1,105 @@
+﻿html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    font-family: 'Khmer OS Battambang', "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    line-height: 1.42857143;
+    color: #333;
+}
+
+.table-bordered {
+    border: 1px solid #ddd;
+}
+
+.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 3px;
+}
+
+.page-container {
+    display: flex;
+}
+
+
+.page-bar {
+    background-color: aliceblue;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.page-breadcrumb {
+    flex: 5;
+    align-items: center;
+}
+
+.page-toolbar {
+    flex: 5;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+/*line list*/
+.portlet-title {
+    background-color: white;
+    margin-top: 10px;
+    padding: 10px;
+}
+
+.portlet-bordered {
+    display: flex;
+    align-items: center;
+    margin: 10px;
+    padding: 10px;
+    border-bottom: 1px solid black;
+}
+
+.caption,
+.create-title {
+    flex: 5;
+}
+
+.actions,
+.page-back {
+    flex: 5;
+    display: flex;
+    justify-content: flex-end;
+}
+
+/*portlet-body*/
+.portlet-body {
+    background-color: white;
+    padding: 15px;
+}
+
+.row_data {
+    margin: 0;
+}
+
+
+.table-scrollable {
+}
+
+.row-pagination {
+    margin-top: 10px;
+}
+
+
+
+

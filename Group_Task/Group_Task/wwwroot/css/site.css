@@ -1,0 +1,87 @@
+* {
+    box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+    .col-sm-4 {
+        width: 33.33333333%;
+        float: left;
+        position: relative;
+        min-height: 1px;
+        padding-right: 3px;
+        padding-bottom: 3px;
+    }
+  
+
+  
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+    font-size: 14px;
+}
+
+body {
+    margin-bottom: 60px;
+    font-family: 'Khmer OS Battambang', "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    line-height: 1.42857143;
+    color: #333;
+}
+
+.table-bordered {
+    border: 1px solid #ddd;
+}
+
+.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 3px;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+}
+a {
+    text-decoration: none;
+    font-size:12px;
+}
+.btn {
+    display: inline-block;
+    padding: 6px 12px;
+    font-size: 12px;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+  .btn:hover {
+        background-color: #125a75;
+    }
+a {
+    color: #337ab7;
+    text-decoration: none;
+}
+select {
+    font-family: inherit;
+}
+
+
+label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: cornflowerblue;
+}
+
+#reference_date{
+    list-style:none;
+    text-decoration:none;
+}

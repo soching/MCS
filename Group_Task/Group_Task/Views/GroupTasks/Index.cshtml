@@ -1,0 +1,285 @@
+﻿@model IEnumerable<Group_Task.Models.GroupTask>
+
+
+@{
+    ViewData["Title"] = "Index";
+    var db = new TestDbContext();
+
+    // get data TaskType
+    var Task_Name = from t in db.TaskMasters select new SelectListItem { Value = t.TaskMasterId.ToString(), Text = t.TaskName};
+
+
+    // get data ProjectName
+    var Project_Name = from P in db.Projects select new SelectListItem { Value = P.ProjectId.ToString(), Text = P.ProjectName};
+
+    var BlockNo = from B in db.HouseInfos select new SelectListItem { Value = B.HouseId.ToString(), Text = B.BlockNo };
+ 
+   
+}
+
+
+
+
+<h3>Group Task</h3>
+
+<section class="featured-grouptask">
+
+    <div class="row">
+        <div class="col-sm-2" style="width:230px">
+            <label for="name" class="control-label">Name</label>
+            <input name="inputName" id="name" class="form-control" type="text" />
+        </div>
+        <div class="col-sm-2" style="width:230px">
+            <label class="control-label">Task</label>
+            <input type="text"  name="Task" class="form-control"  />
+        </div>
+        <div class="col-sm-2" style="width:230px">
+            <label class="control-label">Task Type</label>
+            @Html.DropDownList("TaskName", Task_Name, new { @class = "form-control  "})
+           
+        </div>
+    </div>
+    <div class="row d-flex align-items-end ">
+        <div class="col-sm-2" style="width:230px;">
+            <label for="formFileSm" class="form-label">file input:</label>
+            <input class="form-control form-control-sm" id="formFileSm" type="file">
+        </div>  
+        <div class="col-sm-2​​ " style="margin: 5px 0px">
+            <input type="submit" value="Upload data" id="formFileSm" class="btn btn-primary" />
+            <input type="submit" value="Add More House" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addNewModal" />
+        </div>       
+    </div>
+
+
+    <table class="table table-bordered table-striped mt-2">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th>Zone No.</th>
+                <th>Block</th>
+                <th>Building</th>
+                <th>House No.</th>
+                <th>House Type</th>
+                <th>Street No.</th>
+                <th>Building No.</th>
+                <th>House Code</th>
+                <th>Remark</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.TaskMasterId) </td>
+                    <td>@Html.DisplayFor(modelItem => item.TaskType) </td>
+                    <td>@Html.DisplayFor(modelItem => item.TaskType) </td>
+                    <td>@Html.DisplayFor(modelItem => item.TaskType) </td>
+                    <td>@Html.DisplayFor(modelItem => item.HouseId) </td>
+                    <td>@Html.DisplayFor(modelItem => item.HouseId) </td>
+                    <td>@Html.DisplayFor(modelItem => item.HouseId) </td>
+                    <td>@Html.DisplayFor(modelItem => item.HouseId) </td>
+                    <td>@Html.DisplayFor(modelItem => item.GroupName) </td>
+                    <td>@Html.DisplayFor(modelItem => item.TaskMasterId) </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="col-sm-5" style="margin: 5px 0px">
+        <a asp-action="Index" class="btn btn-primary">Add More House</a>
+        <input type="submit" value="save" class="btn btn-primary" />
+    </div>
+</section>
+
+   <!-- Modal Add New-->
+<div class="modal fade ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix ui-draggable-handle" id="addNewModal" tabindex="-1" aria-labelledby="addNewModalLabel" aria-hidden="true">
+       <div class="modal-dialog modal-xl">
+           <div class="modal-content">
+               <!-- Modal Header -->
+               <div class="modal-header" >
+                   <span class="modal-title" id="addNewModalLabel">House List</span>
+                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+               </div>
+
+               <!-- Modal Body with Form -->
+               <div class="modal-body">
+                   <form>
+                       <!-- All selects in one row -->
+                       <div class="row mb-3">
+                           <!-- project -->
+                           <div class="col-auto">
+                               <label for="project" class="form-label">Project</label>
+                                @Html.DropDownList("project", Project_Name, new { @class = "form-control" })
+
+                           </div> 
+                           <!-- Zone -->
+                           <div class="col-auto">
+                               <label for="zone" class="form-label">Zone</label>
+                               <select class="form-select form-select-sm" id="zone" style="width: 150px;">
+                                   <option selected>Select Zone</option>
+                                   <option value="1">Zone 1</option>
+                                   <option value="2">Zone 2</option>
+                                   <option value="2">Zone 3</option>
+                               </select>
+                           </div>
+                           
+                           <!-- Block -->
+                           <div class="col-auto">
+                               <label for="block" class="form-label">Block</label>
+                               <select class="form-select form-select-sm" id="block" style="width: 150px;">
+                                   <option selected>Select Block</option>
+                                   <option value="1">A</option>
+                                   <option value="2">B</option>
+                                   <option value="3">C</option>
+                               </select>
+                           </div>
+
+                           <!-- Building -->
+                           <div class="col-auto">
+                               <label for="building" class="form-label">Building</label>
+                               <select class="form-select form-select-sm" id="building" style="width: 150px;">
+                                   <option selected>Select Building</option>
+                                   <option value="1">A3</option>
+                                   <option value="2">D3</option>
+                                   <option value="3">A2</option>
+                                   <option value="4">B6</option>
+                               </select>
+                           </div>
+
+                           <!-- House No -->
+                           <div class="col-auto">
+                               <label for="houseNo" class="form-label">House No.</label>
+                               <select class="form-select form-select-sm" id="houseNo" style="width: 150px;">
+                                   <option selected>Select House No.</option>
+                                   <option value="1">One</option>
+                                   <option value="2">Two</option>
+                               </select>
+                           </div>
+
+                           <!-- House Type -->
+                           <div class="col-auto">
+                               <label for="houseType" class="form-label">House Type</label>
+                            <select class="form-select form-select-sm" id="houseNo" style="width: 150px;">
+                                <option selected>Select House No.</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                            </select>
+
+                           </div>
+
+
+                        <!-- Street -->
+                        <div class="col-auto">
+                            <label for="street" class="form-label">Street</label>
+                            <select class="form-select form-select-sm" id="street" style="width: 150px;">
+                                <option selected>Select Street</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                            </select>
+                        </div>
+
+                        <!-- Building No -->
+                        <div class="col-auto">
+                            <label for="buildingNo" class="form-label">Building No.</label>
+                            <select class="form-select form-select-sm" id="buildingNo" style="width: 150px;">
+                                <option selected>Select Building No.</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                            </select>
+                        </div>
+
+                        <!-- House Code -->
+                        <div class="col-auto">
+                            <label for="houseCode" class="form-label">House Code</label>
+                            <select class="form-select form-select-sm" id="houseCode" style="width: 150px;">
+                                <option selected>Select House Code</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Search Button -->
+                    <div class="d-flex justify-content-start mb-3">
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </div>
+
+
+                    <!-- create table  -->
+                    <div class="row mt-4">
+                        <table class="table table-striped table-bordered table-hover text-center align-middle mt-3">
+                            <thead class="table table-bordered table-striped">
+                                <tr>
+                                    <th scope="col">No.</th>
+                                    <th scope="col">Zone</th>
+                                    <th scope="col">Block</th>
+                                    <th scope="col">Building</th>
+                                    <th scope="col">House No.</th>
+                                    <th scope="col">House Type</th>
+                                    <th scope="col">Street No.</th>
+                                    <th scope="col">Building No.</th>
+                                    <th scope="col">House Code</th>
+                                    <th scope="col">Remark</th>
+                                    <th scope="col">Choose</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>01</td>
+                                    <td>Zone 1</td>
+                                    <td>A</td>
+                                    <td>A1</td>
+                                    <td>2</td>
+                                    <td>HO</td>
+                                    <td>NB</td>
+                                    <td>HA 07</td>
+                                    <td>HO-02-NB</td>
+                                    <td>Mock up</td>
+                                    <td><a href="">select</a></td>
+                                </tr>
+                                <tr>
+                                    <td>02</td>
+                                    <td>Zone 1</td>
+                                    <td>A</td>
+
+                                    <td>A1</td>
+                                    <td>2</td>
+                                    <td>HO</td>
+                                    <td>NB</td>
+                                    <td>HA 07</td>
+                                    <td>HO-02-NB</td>
+                                    <td>Mock up</td>
+                                    <td><a href="">select</a></td>
+                                </tr>
+                                <tr>
+                                    <td>03</td>
+                                    <td>Zone 1</td>
+                                    <td>A</td>
+                                    <td>A1</td>
+                                    <td>2</td>
+                                    <td>HO</td>
+                                    <td>NB</td>
+                                    <td>HA 07</td>
+                                    <td>HO-02-NB</td>
+                                    <td>Mock up</td>
+                                    <td><a href="">select</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Close Button -->
+                    <div class="d-flex justify-content-end">
+                        <button type="button" class="btn btn-danger me-2" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

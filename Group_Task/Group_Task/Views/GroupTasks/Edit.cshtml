@@ -1,0 +1,86 @@
+﻿@model Group_Task.Models.GroupTask
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+
+
+<h4>GroupTask > Edit</h4>
+<hr />
+<div class="row">
+    <div class="col-md-7">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="col-sm-5">
+                <label asp-for="TaskMasterId" class="control-label"></label>
+                <input asp-for="TaskMasterId" class="form-control" />
+                <span asp-validation-for="TaskMasterId" class="text-danger"></span>
+            </div>
+            <div class="col-sm-5">
+                <label asp-for="TaskType" class="control-label"></label>
+                <select id="TaskType" asp-for="TaskType" name="TaskType" class="form-control">
+                    <option></option>
+                    <option value="ការងារសសរគ្រឹះផ្ទះ និងរបង">ការងារសសរគ្រឹះផ្ទះ និងរបង</option>
+                    <option value="ការងារបេតុងផ្ទះ">ការងារបេតុងផ្ទះ</option>
+                    <option value="ការងារថ្នាំកម្ចាត់សត្វកណ្តៀរ">ការងារថ្នាំកម្ចាត់សត្វកណ្តៀរ</option>
+                    <option value="ការងាររៀបឥដ្ឋ និងសំណាញ់ការពារប្រេះ">ការងាររៀបឥដ្ឋ និងសំណាញ់ការពារប្រេះ</option>
+                    <option value="ការងារបូកជញ្ជាំងក្នុង">ការងារបូកជញ្ជាំងក្នុង</option>
+                    <option value="ការងារបូកជញ្ជាំងក្រៅ">ការងារបូកជញ្ជាំងក្រៅ</option>
+                    <option value="ការងារជ្រី">ការងារជ្រី</option>
+                    <option value="ការងារការ៉ូ និងម៉ាប">ការងារការ៉ូ និងម៉ាប</option>
+                    <option value="ការងារស្ពេត្រូក្នុង">ការងារស្ពេត្រូក្នុង</option>
+                    <option value="ការងារស្ពេត្រូក្រៅ">ការងារស្ពេត្រូក្រៅ</option>
+                    <option value="ការងារតំឡើងទូងូតទឹក">ការងារតំឡើងទូងូតទឹក</option>
+                    <option value="ការងារដំបូល">ការងារដំបូល</option>
+                    <option value="ការងារពិដាន">ការងារពិដាន</option>
+                    <option value="ការងារទ្វារដែក">ការងារទ្វារដែក</option>
+                    <option value="ការងារចម្រឹងដែកបង្អួច">ការងារចម្រឹងដែកបង្អួច</option>
+                    <option value="ការងារបង្កាន់ជណ្តើរ និងវេរ៉ង់ដារ">ការងារបង្កាន់ជណ្តើរ និងវេរ៉ង់ដារ</option>
+                    <option value="ការងារញ៉ូមកញ្ចក់ទ្វារ និងបង្អួច">ការងារញ៉ូមកញ្ចក់ទ្វារ និងបង្អួច</option>
+                    <option value="ការងារកញ្ចក់ឆ្លុះ">ការងារកញ្ចក់ឆ្លុះ</option>
+                    <option value="ការងារតំឡើងគ្រោងទ្វារ និងសន្លឹកទ្វា">ការងារតំឡើងគ្រោងទ្វារ និងសន្លឹកទ្វា</option>
+                    <option value="ការងារសោទ្វារ ដៃចាប់ទ្វារ និងសម្ភារៈទ្វារ">ការងារសោទ្វារ ដៃចាប់ទ្វារ និងសម្ភារៈទ្វារ</option>
+                    <option value="ការងារសាប">ការងារសាប</option>
+                    <option value="ការងារការពារជម្រាបទឹក">ការងារការពារជម្រាបទឹក</option>
+                    <option value="ការងារតំឡើងគ្រឿងសង្ហារឹម">ការងារតំឡើងគ្រឿងសង្ហារឹម</option>
+                    <option value="ការងារផ្លាកលេខផ្ទះ">ការងារផ្លាកលេខផ្ទះ</option>
+                    <option value="ការងារអំពូលភ្លើង">ការងារអំពូលភ្លើង</option>
+                    <option value="ការងារបណ្តាញអគ្គិសនី និងម៉ាស៊ីនត្រជាក់">ការងារបណ្តាញអគ្គិសនី និងម៉ាស៊ីនត្រជាក់</option>
+                    <option value="ការងារបណ្តាញទឹក">ការងារបណ្តាញទឹក</option>
+                    <option value="ការងារគ្រឿងបំពាក់ក្នុងបន្ទប់ទឹក">ការងារគ្រឿងបំពាក់ក្នុងបន្ទប់ទឹក</option>
+                    <option value="ការងារភ្ជាប់កុងទ័រទឹក">ការងារភ្ជាប់កុងទ័រទឹក</option>
+                    <option value="ការងារទីធ្លា">ការងារទីធ្លា</option>
+                    <option value="ការងារបេតុងរបង">ការងារបេតុងរបង</option>
+                    <option value="ការងារដេគ័ររបង">ការងារដេគ័ររបង</option>
+                    <option value="ការងារស្ពេត្រូរបង">ការងារស្ពេត្រូរបង</option>
+                    <option value="ការងារបៀករ៉ង សំអាតបញ្ចប់">ការងារបៀករ៉ង សំអាតបញ្ចប់</option>
+                </select>
+                <span asp-validation-for="TaskType" class="text-danger"></span>
+            </div>
+            <div class="col-sm-5">
+                <label asp-for="HouseId" class="control-label"></label>
+                <input asp-for="HouseId" class="form-control" />
+                <span asp-validation-for="HouseId" class="text-danger"></span>
+            </div>
+            <div class="col-sm-5">
+                <label asp-for="GroupName" class="control-label"></label>
+                <input asp-for="GroupName" class="form-control" />
+                <span asp-validation-for="GroupName" class="text-danger"></span>
+            </div>
+            <div class="col-sm-5" style="margin: 5px 0px">
+                <input type="submit" value="Save" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-primary">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+   
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

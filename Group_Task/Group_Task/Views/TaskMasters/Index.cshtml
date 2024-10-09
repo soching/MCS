@@ -1,0 +1,100 @@
+﻿@model IEnumerable<Group_Task.Models.TaskMaster>
+
+
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+<h1>Index</h1>
+
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table table-bordered table-striped mt-2">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TaskGroup)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TaskCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TaskName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TaskType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReferenceNum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OldCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FormularSide)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FormularMiddle)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TaskGroup)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TaskCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TaskName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TaskType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReferenceNum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OldCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FormularSide)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FormularMiddle)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.TaskMasterId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.TaskMasterId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.TaskMasterId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,87 @@
+﻿@model IEnumerable<Group_Task.Models.HouseType>
+
+@{
+    ViewData["Title"] = "Index";
+    var db = new TestDbContext();
+    var house_type = from ht in db.HouseTypes select new SelectListItem { Value = ht.HouseTypeId.ToString(), Text = ht.Abbreviation };
+
+}
+
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.HouseTypeName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Abbreviation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StandardSize)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Remark)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HouseGroup)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OtherCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FormulaSide)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FormulaMid)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.HouseTypeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Abbreviation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StandardSize)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Remark)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HouseGroup)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OtherCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FormulaSide)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FormulaMid)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.HouseTypeId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.HouseTypeId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.HouseTypeId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
