@@ -1,0 +1,99 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Items Material</title>
+</head>
+<bo<!DOCTYPE html>
+<html lang="en">
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Items Material</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Action
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                            <li><a class="dropdown-item" href="#">Add New</a></li>
+                            <li><a class="dropdown-item" href="#">Download</a></li>
+                            <li><a class="dropdown-item" href="#">Download Example</a></li>
+                            <li><a class="dropdown-item" href="#">Upload</a></li>
+                            <li><a class="dropdown-item" href="#">Upload Update</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="container my-3" style="border: 1px solid gray;">
+        <form>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="searchInput" class="form-label"><b>Search</b></label>
+                    <input type="text" class="form-control" id="searchInput" placeholder="Enter your text">
+                </div>
+                <div class="col-md-6">
+                    <label for="itemsGroup" class="form-label"><b>Items Group</b></label>
+                    <select class="form-select" id="itemsGroup">
+                        <option selected>Select Item Group</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="brand" class="form-label"><b>Brand</b></label>
+                    <select class="form-select" id="brand">
+                        <option selected>Select Brand</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="itemType" class="form-label"><b>Items Type</b></label>
+                    <select class="form-select" id="itemType">
+                        <option selected>Select Item Type</option>
+                        <option value="1">Item Materials</option>
+                        <option value="2">Item Services</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="materialType" class="form-label"><b>Material Type</b></label>
+                    <select class="form-select" id="materialType">
+                        <option selected>Select Material Type</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="status" class="form-label"><b>Status</b></label>
+                    <select class="form-select" id="status">
+                        <option selected>Select Status</option>
+                        <option value="1">Active</option>
+                        <option value="2">Disable</option>
+                    </select>
+                </div>
+            </div>
+        </form>
+    </header>
+</body>
+</html>
+

@@ -1,0 +1,310 @@
+﻿@{
+    ViewData["Title"] = "Privacy Policy";
+}
+<h1>@ViewData["Title"]</h1>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>navbar</title>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+    <!-- Setup Option -->
+    <div class="collapse navbar-collapse" id="navbarNavSetup">
+        <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarSetupDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Setup Option
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarSetupDropdown">
+                    <li><a class="dropdown-item" href="#">Zone</a></li>
+                    <li><a class="dropdown-item" href="#">Block</a></li>
+                    <li><a class="dropdown-item" href="#">Building</a></li>
+                    <li><a class="dropdown-item" href="#">Street</a></li>
+                    <li><a class="dropdown-item" href="#">Working Type</a></li>
+                    <li><a class="dropdown-item" href="#">Subcontractor</a></li>
+                    <li><a class="dropdown-item" href="#">Warehouse</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Item Info -->
+    <div class="collapse navbar-collapse" id="navbarNavItemInfo">
+        <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarItemDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Item Info
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarItemDropdown">
+                    <li><a class="dropdown-item" href="#">Material Type</a></li>
+                    <li><a class="dropdown-item" href="#">Item Type</a></li>
+                    <li><a class="dropdown-item" href="#">Brand</a></li>
+                    <li><a class="dropdown-item" href="#">Items Material</a></li>
+                    <li><a class="dropdown-item" href="#">Print Barcode</a></li>
+                    <li><a class="dropdown-item" href="#">Suppliers</a></li>
+                    <li><a class="dropdown-item" href="#">Suppliers Items</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <!-- House Info -->
+    <div class="collapse navbar-collapse" id="navbarNavHouseInfo">
+        <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarHouseDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    House Info
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarHouseDropdown">
+                    <li><a class="dropdown-item" href="#">House Type</a></li>
+                    <li><a class="dropdown-item" href="#">House</a></li>
+                    <li><a class="dropdown-item" href="#">BOQ Working Type</a></li>
+                    <li><a class="dropdown-item" href="#">Check BOQ Working Type</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Purchase Dropdown -->
+    <div class="collapse navbar-collapse" id="navbarNavPurchase">
+        <ul class="navbar-nav">
+            <!-- Purchase Dropdown -->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarPurchaseDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Purchase
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarPurchaseDropdown">
+                    <!-- Request Sub-dropdown -->
+                    <li class="dropdown-submenu">
+                        <a class="dropdown-item dropdown-toggle" href="#" id="navbarRequestDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Request
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarRequestDropdown">
+                            <li><a class="dropdown-item" href="#">Request</a></li>
+                            <li><a class="dropdown-item" href="#">Request Service</a></li>
+                            <li><a class="dropdown-item" href="#">Check Request</a></li>
+                            <li><a class="dropdown-item" href="#">Feedback</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- Order Sub-dropdown -->
+                    <li class="dropdown-submenu">
+                        <a class="dropdown-item dropdown-toggle" href="#" id="navbarOrderDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Order
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarOrderDropdown">
+                            <li><a class="dropdown-item" href="#">Order</a></li>
+                            <li><a class="dropdown-item" href="#">Check Order</a></li>
+                            <li><a class="dropdown-item" href="#">Feedback</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Approval -->
+    <div class="collapse navbar-collapse" id="navbarNavHouseInfo">
+        <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarHouseDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Approval
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarHouseDropdown">
+                    <li><a class="dropdown-item" href="#">Request</a></li>
+                    <li><a class="dropdown-item" href="#">Order</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Inventory -->
+    <div class="collapse navbar-collapse" id="navbarNavHouseInfo">
+        <ul class="navbar-nav">
+            <!-- Inventory Dropdown -->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarHouseDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Inventory
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarHouseDropdown">
+                    <li><a class="dropdown-item" href="#">Stock Entry</a></li>
+                    <li><a class="dropdown-item" href="#">Stock Import</a></li>
+                    <li><a class="dropdown-item" href="#">Stock Balance</a></li>
+                    <li><a class="dropdown-item" href="#">Adjustment</a></li>
+                    <li><a class="dropdown-item" href="#">Approve Adjustment</a></li>
+                    <li><a class="dropdown-item" href="#">Stock Transfer</a></li>
+
+                    <!-- Goods Received Note Sub-dropdown -->
+                    <li class="dropdown-submenu">
+                        <a class="dropdown-item dropdown-toggle" href="#" id="goodsReceivedNoteDropdown">
+                            Goods Received Note
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item" href="#">Entry</a></li>
+                            <li><a class="dropdown-item" href="#">Return</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- Usage Sub-dropdown -->
+                    <li class="dropdown-submenu">
+                        <a class="dropdown-item dropdown-toggle" href="#" id="usageDropdown">
+                            Usage
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item" href="#">Entry</a></li>
+                            <li><a class="dropdown-item" href="#">Quick Entry</a></li>
+                            <li><a class="dropdown-item" href="#">Check Usage</a></li>
+                            <li><a class="dropdown-item" href="#">Return</a></li>
+                            <li><a class="dropdown-item" href="#">Quick Return</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Report -->
+    <div class="collapse navbar-collapse" id="navbarNavPurchase">
+        <ul class="navbar-nav">
+            <!-- Purchase Dropdown -->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarPurchaseDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Report
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarPurchaseDropdown">
+                    <!-- BOQ -->
+                    <li class="dropdown-submenu">
+                        <a class="dropdown-item dropdown-toggle" href="#" id="navbarRequestDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            BOQ
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarRequestDropdown">
+                            <li><a class="dropdown-item" href="#">Tree View</a></li>
+                            <li><a class="dropdown-item" href="#">BOQ Detail</a></li>
+                            <li><a class="dropdown-item" href="#">BOQ Detail With Cost</a></li>
+                            <li><a class="dropdown-item" href="#">BOQ Sum</a></li>
+                            <li><a class="dropdown-item" href="#">BOQ Material Sum By Zone</a></li>
+                            <li><a class="dropdown-item" href="#">BOQ Material Sum By Block</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- Usage -->
+                    <li class="dropdown-submenu">
+                        <a class="dropdown-item dropdown-toggle" href="#" id="navbarOrderDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Usage
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarOrderDropdown">
+                            <li><a class="dropdown-item" href="#">Usage Detail</a></li>
+                            <li><a class="dropdown-item" href="#">Usage Detail Cost</a></li>
+                            <li><a class="dropdown-item" href="#">Usage Vs BOQ Cost</a></li>
+                            <li><a class="dropdown-item" href="#">Usage Vs BOQ</a></li>
+                        </ul>
+                    </li> 
+                    <!-- Purchase -->
+                    <li class="dropdown-submenu">
+                        <a class="dropdown-item dropdown-toggle" href="#" id="navbarOrderDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Purchase
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarOrderDropdown">
+                            <li><a class="dropdown-item" href="#">Request</a></li>
+                            <li><a class="dropdown-item" href="#">Order</a></li>
+                            <li><a class="dropdown-item" href="#">Goods Received Note</a></li>
+                        </ul>
+                    </li> 
+                    <!-- Stock -->
+                    <li class="dropdown-submenu">
+                        <a class="dropdown-item dropdown-toggle" href="#" id="navbarOrderDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Stock
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarOrderDropdown">
+                            <li><a class="dropdown-item" href="#"></a>Stock Balance</li>
+                            <li><a class="dropdown-item" href="#">Stock Details</a></li>
+                            <li><a class="dropdown-item" href="#">All Stock Transaction</a></li>
+                            <li><a class="dropdown-item" href="#">Stock Balance Detail(Cost)</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- Costing Report -->
+                    <li class="dropdown-submenu">
+                        <a class="dropdown-item dropdown-toggle" href="#" id="navbarOrderDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Costing Report
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarOrderDropdown">
+                            <li><a class="dropdown-item" href="#">PR Detail</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+        <!-- user group -->
+        <div class="collapse navbar-collapse" id="navbarNavSetup">
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarSetupDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        User group
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarSetupDropdown">
+                        <li><a class="dropdown-item" href="#">Zone</a></li>
+                        <li><a class="dropdown-item" href="#">Block</a></li>
+                        <li><a class="dropdown-item" href="#">Building</a></li>
+                        <li><a class="dropdown-item" href="#">Street</a></li>
+                        <li><a class="dropdown-item" href="#">Working Type</a></li>
+                        <li><a class="dropdown-item" href="#">Subcontractor</a></li>
+                        <li><a class="dropdown-item" href="#">Warehouse</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>       
+        
+        <!-- user info -->
+        <div class="collapse navbar-collapse" id="navbarNavSetup">
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarSetupDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        User Info
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarSetupDropdown">
+                        <li><a class="dropdown-item" href="#">Zone</a></li>
+                        <li><a class="dropdown-item" href="#">Block</a></li>
+                        <li><a class="dropdown-item" href="#">Building</a></li>
+                        <li><a class="dropdown-item" href="#">Street</a></li>
+                        <li><a class="dropdown-item" href="#">Working Type</a></li>
+                        <li><a class="dropdown-item" href="#">Subcontractor</a></li>
+                        <li><a class="dropdown-item" href="#">Warehouse</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        
+        <!-- setting -->
+        <div class="collapse navbar-collapse" id="navbarNavSetup">
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarSetupDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Setting
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarSetupDropdown">
+                        <li><a class="dropdown-item" href="#">Zone</a></li>
+                        <li><a class="dropdown-item" href="#">Block</a></li>
+                        <li><a class="dropdown-item" href="#">Building</a></li>
+                        <li><a class="dropdown-item" href="#">Street</a></li>
+                        <li><a class="dropdown-item" href="#">Working Type</a></li>
+                        <li><a class="dropdown-item" href="#">Subcontractor</a></li>
+                        <li><a class="dropdown-item" href="#">Warehouse</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+</nav>
+
+</head>
+<body>
+</body>
+</html>
+

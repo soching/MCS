@@ -1,0 +1,136 @@
+﻿@model IPagedList<P_Requests.Models.PurchaseRequest>
+@using X.PagedList;
+@using X.PagedList.Mvc.Core;
+@using X.PagedList.Mvc.Core.Common;
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@* START PAGE DETAIL PURCHASE_REQUEST *@
+<div class="page-bar">
+    <div class="page-breadcrumb">
+        <a class="fw-bold font-dark " href="https://localhost:7081/">Home | </a>
+        <span> Request</span>
+    </div>
+    <div class="page-toolbar">
+        <i class="fa-solid fa-calendar-days"></i>
+        <span class="thin text-uppercase hidden-xs">August 20, 2024 - September 18, 2024</span>
+        <i class="fa fa-angle-down"></i>
+    </div>
+</div>
+
+
+<div class="page-content">
+    <div class="portlet-title">
+        <div class="portlet-bordered">
+            <div class="caption">
+                <span class="caption-subject fw-bold font-dark text-uppercase">Request</span>
+                <span class="caption-helper">Request List</span>
+            </div>
+            <div class="actions">
+                <a asp-action="Create" class="btn fw-bold" style="background-color:#00bfff;">Add New </a>
+            </div>
+        </div>
+    </div>
+
+    @* portlet-body *@
+    <div class="portlet-body">
+        <div class="dataTable_wrapper">
+            <div class="row_data">
+                <div class="dataTable_filter d-flex justify-content-between p-2">
+                    <div class="dataTables-left">
+                        <label>
+                            Show
+                            <select name="my-table_length" aria-controls="my-table" class="from-control input-big  input-inline ">
+                                <option value="4">4</option>
+                                <option value="8">8</option>
+                                <option value="12">12</option>
+                                <option value="20">20</option>
+                                <option value="-1">All</option>
+                            </select>
+                            entries
+                        </label>
+                    </div>
+                    <div class="dataTables-rigth">
+                        <div>
+                            <label>
+                                search:
+                            </label>
+                            <input type="search" class="input-sm input-small input-inline"
+                                   placeholder="" aria-controls="my-table">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="table-scrollable">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr style="font-size:smaller;">
+                            <th style="width: 3%;" class="all">ID</th>
+                            <th width="15%">Transaction No</th>
+                            <th width="15%">Transaction Date</th>
+                            <th width="15%">Delivery Date</th>
+                            <th width="15%">Approved Date</th>
+                            <th width="15%">Department</th>
+                            <th width="5%">Status</th>
+                            <th width="10%">Note</th>
+                            <th width="15%">Request by</th>
+                            <th width="15%">Updated By</th>
+                            <th width="15%">Checked By</th>
+                            <th width="20%">Approved by</th>
+                            <th width="15%">Attachment</th>
+                            <th width="7%">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                                <td>@Html.DisplayFor(modelItem => item.TransactionNo)</td>
+                                <td>@Html.DisplayFor(modelItem => item.TransactionDate)</td>
+                                <td>@Html.DisplayFor(modelItem => item.DeliveryDate)</td>
+                                <td>@Html.DisplayFor(modelItem => item.ApprovedDate)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Department)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Note)</td>
+                                <td>@Html.DisplayFor(modelItem => item.RequestBy)</td>
+                                <td>@Html.DisplayFor(modelItem => item.UpdatedBy)</td>
+                                <td>@Html.DisplayFor(modelItem => item.CheckedBy)</td>
+                                <td>@Html.DisplayFor(modelItem => item.ApprovedBy)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Attachment)</td>
+                                <td>
+                                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="row-pagination d-flex justify-content-between p-2">
+                <div class="dataTables_info" id="my-table_info" role="status" aria-live="polite">Showing 1 to 12 entries</div>
+                <div aria-label="Page navigation">
+                    @Html.PagedListPager(Model, page => Url.Action("Index", "PurchaseRequests",
+                             new { page = page }),
+                             new PagedListRenderOptions
+                    {
+                        LiElementClasses = new[] { "page-item" },
+                        PageClasses = new[] { "page-link" }
+                    }
+                             )
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+@* END PAGE DETAIL PURCHASE_REQUEST *@
+
+
+
