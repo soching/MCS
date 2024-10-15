@@ -1,45 +1,121 @@
-﻿@model IEnumerable<Group_Task.Models.Warehouse>
+﻿@model IPagedList<Group_Task.Models.Warehouse>
+@using X.PagedList;
+@using X.PagedList.Mvc.Core;
+@using X.PagedList.Mvc.Core.Common;
+
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<div class="page-bar">
+    <div class="page-breadcrumb">
+        <a class="fw-bold font-dark text-dark " asp-controller="Home">Home</a> |
+        <span>Warehouses</span>
+    </div>
+    <div class="page-toolbar">
+        <i class="bi-calendar-day me-2"></i>
+        <span class="thin text-uppercase hidden-xs">August 20, 2024 - September 18, 2024</span>
+    </div>
+</div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>NameWarehouse</th>
-            <th>UseControl</th>
-            <th>TelPhone</th>
-            <th>Address</th>    
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.NameWarehouse)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UseControl)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TelPhone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Address)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.IdWarehouse">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.IdWarehouse">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdWarehouse">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+
+<div class="page-content border box-shadow mt-3">
+    <div class="portlet-title">
+        <div class="portlet-bordered">
+            <div class="caption">
+                <span class="fw-bold font-dark text-uppercase">Warehouses</span>
+                <span>Warehouses List</span>
+            </div>
+            <div class="actions">
+                <a asp-controller="Warehouses" class="rounded-pill list-unstyled btn-light border border-secondary me-2">
+                    <span class="m-2 ">Upload</span>
+                </a>   <a asp-controller="Warehouses" asp-action="Create" class="rounded-pill list-unstyled btn-light border border-secondary">
+                    <span class="m-2 ">Add New</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    @* portlet-body *@
+    <div class="portlet-body">
+        <div class="dataTable_wrapper">
+            <div class="row_data">
+                <div class="dataTable_filter d-flex justify-content-between p-2">
+                    <div class="dataTables-left">
+                        <label>
+                            Show
+                            <select name="my-table_length" aria-controls="my-table" class="from-control input-big  input-inline " style="width:70px;">
+                                <option value="4">4</option>
+                                <option value="8">8</option>
+                                <option value="12">12</option>
+                                <option value="20">20</option>
+                                <option value="-1">All</option>
+                            </select>
+                            entries
+                        </label>
+                    </div>
+                    <div class="dataTables-rigth">
+                        <div>
+                            <label>
+                                search:
+                            </label>
+                            <input type="search" class="input-sm input-small input-inline" style="outline-style:none;"
+                                   placeholder="" aria-controls="my-table">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="table-scrollable">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr style="font-size:smaller;">
+                            <th style="width: 3%;" class="all">ID</th>
+                            <th>NameWarehouse</th>
+                            <th>UseControl</th>
+                            <th>TelPhone</th>
+                            <th>Address</th>   
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.IdWarehouse)</td>
+                                <td>@Html.DisplayFor(modelItem => item.NameWarehouse)</td>
+                                <td>@Html.DisplayFor(modelItem => item.UseControl)</td>
+                                <td>@Html.DisplayFor(modelItem => item.TelPhone)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Address)</td>     
+                                <td>
+                                    <a asp-action="Edit" asp-route-id="@item.IdWarehouse">Edit</a> |
+                                    <a asp-action="Details" asp-route-id="@item.IdWarehouse">Details</a> |
+                                    <a asp-action="Delete" asp-route-id="@item.IdWarehouse">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="row-pagination d-flex justify-content-between p-2">
+                <div class="dataTables_info" id="my-table_info" role="status" aria-live="polite">Showing 1 to 12 entries</div>
+                <div aria-label="Page navigation">
+                    @Html.PagedListPager(Model, page => Url.Action("Index", "Warehouses",
+                             new { page = page }),
+                             new PagedListRenderOptions
+                    {
+                        LiElementClasses = new[] { "page-item" },
+                        PageClasses = new[] { "page-link" }
+                    }
+                             )
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+

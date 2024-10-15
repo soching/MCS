@@ -14,6 +14,7 @@
         <a class="fw-bold font-dark text-dark " asp-controller="Home">Home</a> |
         <span> Request</span>
     </div>
+
     <div class="page-toolbar">
         <i class="bi-calendar-day me-2"></i>
         <span class="thin text-uppercase hidden-xs">August 20, 2024 - September 18, 2024</span>
@@ -29,9 +30,9 @@
                 <span>Request List</span>
             </div>
             <div class="actions">
-                <a asp-controller="PurchaseRequests" class="rounded-pill list-unstyled btn-light border border-secondary me-2">
+                <a asp-controller="PurchaseRequest" class="rounded-pill list-unstyled btn-light border border-secondary me-2">
                     <span class="m-2 ">Upload</span>
-                </a>   <a asp-controller="PurchaseRequests" asp-action="Create" class="rounded-pill list-unstyled btn-light border border-secondary">
+                </a>   <a asp-controller="PurchaseRequest" asp-action="Create" class="rounded-pill list-unstyled btn-light border border-secondary">
                     <span class="m-2 ">Add New</span>
                 </a>
             </div>
@@ -118,7 +119,7 @@
             <div class="row-pagination d-flex justify-content-between p-2">
                 <div class="dataTables_info" id="my-table_info" role="status" aria-live="polite">Showing 1 to 12 entries</div>
                 <div aria-label="Page navigation">
-                    @Html.PagedListPager(Model, page => Url.Action("Index", "PurchaseRequests",
+                    @Html.PagedListPager(Model, page => Url.Action("Index", "PurchaseRequest",
                              new { page = page }),
                              new PagedListRenderOptions
                     {

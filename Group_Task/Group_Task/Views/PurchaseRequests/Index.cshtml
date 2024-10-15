@@ -1,103 +1,133 @@
-﻿@model IEnumerable<Group_Task.Models.PurchaseRequest>
+﻿@model IPagedList<Group_Task.Models.PurchaseRequest>
+@using X.PagedList;
+@using X.PagedList.Mvc.Core;
+@using X.PagedList.Mvc.Core.Common;
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.TransactionNo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TransactionDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DeliveryDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ApprovedDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Department)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Note)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RequestBy)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UpdatedBy)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CheckedBy)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ApprovedBy)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Attachment)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
+<div class="page-bar">
+    <div class="page-breadcrumb">
+        <a class="fw-bold font-dark text-dark " asp-controller="Home">Home</a> |
+        <span> Request</span>
+    </div>
+    <div class="page-toolbar">
+        <i class="bi-calendar-day me-2"></i>
+        <span class="thin text-uppercase hidden-xs">August 20, 2024 - September 18, 2024</span>
+    </div>
+</div>
 
-        <tr>
+<div class="page-content border box-shadow mt-3">
+    <div class="portlet-title">
+        <div class="portlet-bordered">
+            <div class="caption">
+                <span class="fw-bold font-dark text-uppercase">Request</span>
+                <span>Request List</span>
+            </div>
+            <div class="actions">
+                <a asp-controller="PurchaseRequests" class="rounded-pill list-unstyled btn-light border border-secondary me-2">
+                    <span class="m-2 ">Upload</span>
+                </a>   
+                <a asp-controller="PurchaseRequests" asp-action="Create" class="rounded-pill list-unstyled btn-light border border-secondary">
+                    <span class="m-2 ">Add New</span>
+                </a>
+            </div>
+        </div>
+    </div>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.TransactionNo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TransactionDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DeliveryDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ApprovedDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Department)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Note)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RequestBy)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UpdatedBy)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CheckedBy)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ApprovedBy)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Attachment)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    @* portlet-body *@
+    <div class="portlet-body">
+        <div class="dataTable_wrapper">
+            <div class="row_data">
+                <div class="dataTable_filter d-flex justify-content-between p-2">
+                    <div class="dataTables-left">
+                        <label>
+                            Show
+                            <select name="my-table_length" aria-controls="my-table" class="from-control input-big  input-inline " style="width:70px;">
+                                <option value="4">4</option>
+                                <option value="8">8</option>
+                                <option value="12">12</option>
+                                <option value="20">20</option>
+                                <option value="-1">All</option>
+                            </select>
+                            entries
+                        </label>
+                    </div>
+                    <div class="dataTables-rigth">
+                        <div>
+                            <label>
+                                search:
+                            </label>
+                            <input type="search" class="input-sm input-small input-inline" style="outline-style:none;"
+                                   placeholder="" aria-controls="my-table">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="table-scrollable">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr style="font-size:smaller;">
+                            <th style="width: 3%;" class="all">ID</th>
+                            <th>TransactionNo</th>
+                            <th>TransactionDate</th>
+                            <th>DeliveryDate</th>
+                            <th>ApprovedDate</th>
+                            <th>Department</th>
+                            <th>Status</th>
+                            <th>Note</th>
+                            <th>Requestby</th>
+                            <th>UpdatedBy</th>
+                            <th>CheckedBy</th>
+                            <th>Approvedby</th>
+                            <th>Attachment</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                                <td>@Html.DisplayFor(modelItem => item.TransactionNo)</td>
+                                <td>@Html.DisplayFor(modelItem => item.TransactionDate)</td>
+                                <td>@Html.DisplayFor(modelItem => item.DeliveryDate)</td>
+                                <td>@Html.DisplayFor(modelItem => item.ApprovedDate)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Department)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Note)</td>
+                                <td>@Html.DisplayFor(modelItem => item.RequestBy)</td>
+                                <td>@Html.DisplayFor(modelItem => item.UpdatedBy)</td>
+                                <td>@Html.DisplayFor(modelItem => item.CheckedBy)</td>
+                                <td>@Html.DisplayFor(modelItem => item.ApprovedBy)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Attachment)</td>
+                                <td>
+                                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="row-pagination d-flex justify-content-between p-2">
+                <div class="dataTables_info" id="my-table_info" role="status" aria-live="polite">Showing 1 to 12 entries</div>
+                <div aria-label="Page navigation">
+                    @Html.PagedListPager(Model, page => Url.Action("Index", "PurchaseRequests",
+                             new { page = page }),
+                             new PagedListRenderOptions
+                    {
+                        LiElementClasses = new[] { "page-item" },
+                        PageClasses = new[] { "page-link" }
+                    }
+                             )
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

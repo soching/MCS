@@ -4,85 +4,111 @@
     ViewData["Title"] = "Create";
 }           
 
-<h1>Create</h1>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>jQuery UI Datepicker - Default functionality</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.0/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.14.0/jquery-ui.js"></script>
+    <script>
+        $( function() {
+          $( "#datepicker" ).datepicker();
+        } );
+    </script>
+   
+</head>
+<body>
 
-<h4>PurchaseRequest</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="TransactionNo" class="control-label"></label>
-                <input asp-for="TransactionNo" class="form-control" />
-                <span asp-validation-for="TransactionNo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TransactionDate" class="control-label"></label>
-                <input asp-for="TransactionDate" class="form-control" />
-                <span asp-validation-for="TransactionDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DeliveryDate" class="control-label"></label>
-                <input asp-for="DeliveryDate" class="form-control" />
-                <span asp-validation-for="DeliveryDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ApprovedDate" class="control-label"></label>
-                <input asp-for="ApprovedDate" class="form-control" />
-                <span asp-validation-for="ApprovedDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Department" class="control-label"></label>
-                <input asp-for="Department" class="form-control" />
-                <span asp-validation-for="Department" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Status" class="control-label"></label>
-                <input asp-for="Status" class="form-control" />
-                <span asp-validation-for="Status" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Note" class="control-label"></label>
-                <textarea class="form-control" asp-for="Note" aria-label="With textarea"></textarea>
-                <span asp-validation-for="Note" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="RequestBy" class="control-label"></label>
-                <input asp-for="RequestBy" class="form-control" />
-                <span asp-validation-for="RequestBy" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UpdatedBy" class="control-label"></label>
-                <input asp-for="UpdatedBy" class="form-control" />
-                <span asp-validation-for="UpdatedBy" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CheckedBy" class="control-label"></label>
-                <input asp-for="CheckedBy" class="form-control" />
-                <span asp-validation-for="CheckedBy" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ApprovedBy" class="control-label"></label>
-                <input asp-for="ApprovedBy" class="form-control" />
-                <span asp-validation-for="ApprovedBy" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Attachment" class="control-label"></label>
-                <input asp-for="Attachment" class="form-control" />
-                <span asp-validation-for="Attachment" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+    <p>Date: <input type="text" id="datepicker"></p>
+
+    <h1>Create</h1>
+
+    <h4>PurchaseRequest</h4>
+
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="TransactionNo" class="control-label"></label>
+                    <input asp-for="TransactionNo" class="form-control"  />
+                    <span asp-validation-for="TransactionNo" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="TransactionDate" class="control-label"></label>
+                    <input class="form-control" type="text" id="datepicker" />
+                    <span asp-validation-for="TransactionDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DeliveryDate" class="control-label"></label>
+                    <input asp-for="DeliveryDate" class="form-control" />
+                    <span asp-validation-for="DeliveryDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ApprovedDate" class="control-label"></label>
+                    <input asp-for="ApprovedDate" class="form-control" />
+                    <span asp-validation-for="ApprovedDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Department" class="control-label"></label>
+                    <input asp-for="Department" class="form-control" />
+                    <span asp-validation-for="Department" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Status" class="control-label"></label>
+                    <input asp-for="Status" class="form-control" />
+                    <span asp-validation-for="Status" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Note" class="control-label"></label>
+                    <textarea class="form-control" asp-for="Note" aria-label="With textarea"></textarea>
+                    <span asp-validation-for="Note" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="RequestBy" class="control-label"></label>
+                    <input asp-for="RequestBy" class="form-control" />
+                    <span asp-validation-for="RequestBy" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="UpdatedBy" class="control-label"></label>
+                    <input asp-for="UpdatedBy" class="form-control" />
+                    <span asp-validation-for="UpdatedBy" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CheckedBy" class="control-label"></label>
+                    <input asp-for="CheckedBy" class="form-control" />
+                    <span asp-validation-for="CheckedBy" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ApprovedBy" class="control-label"></label>
+                    <input asp-for="ApprovedBy" class="form-control" />
+                    <span asp-validation-for="ApprovedBy" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Attachment" class="control-label"></label>
+                    <input asp-for="Attachment" class="form-control" />
+                    <span asp-validation-for="Attachment" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    @section Scripts {
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+    }
+
+</body>
+</html>

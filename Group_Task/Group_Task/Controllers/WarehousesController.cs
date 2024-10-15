@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Group_Task.Models;
+using X.PagedList;
 
 namespace Group_Task.Controllers
 {
@@ -19,11 +20,15 @@ namespace Group_Task.Controllers
         }
 
         // GET: Warehouses
-        public async Task<IActionResult> Index()
+      
+        public IActionResult Index(int? page)
         {
-              return _context.Warehouses != null ? 
+            /*  return _context.Warehouses != null ? 
                           View(await _context.Warehouses.ToListAsync()) :
-                          Problem("Entity set 'TestDbContext.Warehouses'  is null.");
+                          Problem("Entity set 'TestDbContext.Warehouses'  is null.");*/
+
+            ViewData["Title"] = "Index";
+            return View(_context.Warehouses.ToPagedList(page ?? 1, 4));
         }
 
         // GET: Warehouses/Details/5
