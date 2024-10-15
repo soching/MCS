@@ -32,7 +32,6 @@ namespace Group_Task.Controllers
             return View(_context.PurchaseRequests.ToPagedList(page ?? 1, 4));
         }
 
-     
 
         // GET: PurchaseRequests/Details/5
         public async Task<IActionResult> Details(int? id)
