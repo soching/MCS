@@ -26,6 +26,10 @@ namespace Items_Material.Controllers
               return _context.Itemsmaterials != null ? 
                           View(await _context.Itemsmaterials.ToListAsync()) :
                           Problem("Entity set 'Items_MaterialContext.Itemsmaterials'  is null.");
+        }        
+        public IActionResult AddNew()
+        {
+              return View();
         }
         public async Task<IActionResult> Index(string Empsearch, int? page)
         {
