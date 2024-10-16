@@ -1,0 +1,142 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header class="container my-3" style="border: 1px solid gray;">
+        <div class="top  text-dark p-3 mb-3">
+            <h4><b>+BOQ Add New BOQ</b></h4>
+        </div>
+        <hr />
+
+        <form>
+            <div class="row mb-3">
+                <!-- First row: BOQ No., Zone, and Block -->
+                <div class="col-md-4">
+                    <label for="boqNo" class="form-label"><b>BOQ No.</b></label>
+                    <input type="text" class="form-control" id="boqNo" placeholder="Enter BOQ number">
+                </div>
+                <div class="col-md-4">
+                    <label for="zone" class="form-label"><b>Zone</b></label>
+                    <select class="form-select" id="zone">
+                        <option selected>Select zone</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="block" class="form-label"><b>Block</b></label>
+                    <select class="form-select" id="block">
+                        <option selected>Select block</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <!-- Second row: Building, Street, and House Type -->
+                <div class="col-md-4">
+                    <label for="building" class="form-label"><b>Building</b></label>
+                    <select class="form-select" id="building">
+                        <option selected>Select building</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="street" class="form-label"><b>Street</b></label>
+                    <select class="form-select" id="street">
+                        <option selected>Select street</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="houseType" class="form-label"><b>House Type</b></label>
+                    <select class="form-select" id="houseType">
+                        <option selected>Select house type</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <!-- Third row: Search and File Upload -->
+                <div class="col-md-6">
+                    <label for="search" class="form-label"><b>House No.</b></label>
+                    <input type="text" class="form-control" id="search" placeholder="Enter search term">
+                </div>
+                <div class="col-md-6">
+                    <label for="fileUpload" class="form-label"><b>Reference</b></label>
+                    <input type="file" class="form-control" id="fileUpload" />
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <!-- Fourth row: Main Working Type, Working Type, and Add Button -->
+                <div class="col-md-4">
+                    <label for="mainWorkingType" class="form-label"><b>Main Working Type</b></label>
+                    <select class="form-select" id="mainWorkingType">
+                        <option selected>Select</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="workingType" class="form-label"><b>Working Type</b></label>
+                    <select class="form-select" id="workingType">
+                        <option selected>Select</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                    </select>
+                </div>
+                <div class="col-md-4 text-end">
+                    <label class="form-label">&nbsp;</label> <!-- For spacing consistency -->
+                    <button type="button" class="btn btn-primary d-block">Add</button>
+                </div>               
+                <div class="col-md-4 text-end">
+                    <label class="form-label">&nbsp;</label> <!-- For spacing consistency -->
+                    <button type="button" class="btn btn-primary d-block">Add Main Working Type</button>
+                </div>
+            </div>
+        </form>
+
+        <table class="table">
+            <thead>
+                <tr>                 
+                    <th scope="col">No.</th>
+                    <th scope="col">Item Type</th>
+                    <th scope="col">Item Material</th>
+                    <th scope="col">Brand</th>
+                    <th scope="col">UOM</th>
+                    <th scope="col">Qty/Std</th>
+                    <th scope="col">Cost</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">+</th>
+                </tr>
+            </thead>
+            <tbody>                               
+            </tbody>
+        </table>
+        <span>Total Amount: .............</span>
+        <div class="col-md-12 text-end">
+            <label class="form-label">&nbsp;</label> <!-- For spacing consistency -->
+            <div class="d-flex justify-content-end gap-2">
+                <button type="button" class="btn btn-primary">Save To Draft</button>
+                <button type="button" class="btn btn-success">Submit</button>
+                <button type="button" class="btn btn-danger">Cancel</button>
+            </div>
+        </div>
+    </header>
+</body>
+</html>
