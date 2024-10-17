@@ -103,6 +103,7 @@ namespace Group_Task.Models
         public virtual DbSet<LogRecord> LogRecords { get; set; } = null!;
         public virtual DbSet<LogTime> LogTimes { get; set; } = null!;
         public virtual DbSet<ManageBlock> ManageBlocks { get; set; } = null!;
+        public virtual DbSet<MaterialType> MaterialTypes { get; set; } = null!;
         public virtual DbSet<Measure> Measures { get; set; } = null!;
         public virtual DbSet<Module> Modules { get; set; } = null!;
         public virtual DbSet<MoneyByWeek> MoneyByWeeks { get; set; } = null!;
@@ -177,7 +178,8 @@ namespace Group_Task.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=lb;Database=testdb; user id = kunthea; pwd=12345678;");
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+                optionsBuilder.UseSqlServer("Server=lb;Database=testdb; user id = soching; pwd=123456789;");
             }
         }
 
@@ -388,6 +390,12 @@ namespace Group_Task.Models
             {
                 entity.HasKey(e => e.TimeId)
                     .HasName("PK_LogTimes");
+            });
+
+            modelBuilder.Entity<MaterialType>(entity =>
+            {
+                entity.HasKey(e => e.MaterialId)
+                    .HasName("PK__Material__6BFE1D288034F3F9");
             });
 
             modelBuilder.Entity<PayMonth>(entity =>
