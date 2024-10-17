@@ -25,7 +25,9 @@
                         </li>
                         <li><a class="dropdown-item" href="#">Download</a></li>
                         <li><a class="dropdown-item" href="#">Download Example</a></li>
-                        <li><a class="dropdown-item" href="#">Upload</a></li>
+                        <li>
+                            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#upload">Upload</a>
+                        </li>
                         <li><a class="dropdown-item" href="#">Upload Update</a></li>
                     </ul>
                 </li>
@@ -91,6 +93,55 @@
     </form>
 </header>
 
+
+<!-- Modal Upload -->
+<div class="modal fade" id="upload" tabindex="-1" aria-labelledby="addNewModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header" style="background-color: dodgerblue;">
+                <span class="modal-title" id="addNewModalLabel" style="color: white;">Upload Document</span>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <h6 class="ms-2"><strong></strong> <span class="required" style="color:black; font-size:30px">*</span><strong>New BOQ</strong></h6>
+
+            <p class="p-2">
+                The first line in downloaded csv file should remain as it is. Please do not change the order of columns.
+                The correct column order is () & you must follow this. Please make sure the csv file is UTF-8 encoded and not saved with byte order mark (BOM).
+            </p>
+            <!-- Modal Body with Form -->
+            <div class="modal-body">
+                <form>
+                    <!-- Working Type -->
+                    <div class="row mb-3">
+                        <label for="supplierStatus" class="col-sm-4 col-form-label"><strong>Working Type</strong> <span class="required" style="color:red;">*</span></label>
+                        <div class="col-sm-8">
+                            <select class="form-select" id="supplierStatus" required>
+                                <option value="" selected disabled>Please choose</option>
+                                <option value="active">Developer</option>
+                                <option value="inactive">Net working</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Document Upload -->
+                    <div class="row mb-3">
+                        <label for="supplierDocument" class="col-sm-4 col-form-label"><strong>Upload Document</strong> <span class="required" style="color:red;">*</span></label>
+                        <div class="col-sm-8">
+                            <input type="file" class="form-control" id="supplierDocument" required>
+                            <div class="form-text">Please upload a document related to the supplier.</div>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button and Cancel -->
+                    <div class="d-flex justify-content-end">
+                        <button type="button" class="btn btn-danger me-2" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Save</button>                      
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 <form method="get" asp-action="Index">
     <p>
