@@ -33,6 +33,7 @@ namespace Group_Task.Models
         public virtual DbSet<BoqDetail> BoqDetails { get; set; } = null!;
         public virtual DbSet<BoqReport> BoqReports { get; set; } = null!;
         public virtual DbSet<BoqWorkingType> BoqWorkingTypes { get; set; } = null!;
+        public virtual DbSet<Brand> Brands { get; set; } = null!;
         public virtual DbSet<Category> Categories { get; set; } = null!;
         public virtual DbSet<Classify> Classifies { get; set; } = null!;
         public virtual DbSet<Company> Companies { get; set; } = null!;
