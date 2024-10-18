@@ -16,22 +16,13 @@ namespace Group_Task.Models
         {
         }
 
-        public virtual DbSet<Abc> Abcs { get; set; } = null!;
-        public virtual DbSet<Abcd> Abcds { get; set; } = null!;
         public virtual DbSet<AccountChart> AccountCharts { get; set; } = null!;
         public virtual DbSet<AllowModifyResult> AllowModifyResults { get; set; } = null!;
-        public virtual DbSet<AspNetRole> AspNetRoles { get; set; } = null!;
-        public virtual DbSet<AspNetRoleClaim> AspNetRoleClaims { get; set; } = null!;
-        public virtual DbSet<AspNetUser> AspNetUsers { get; set; } = null!;
-        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; } = null!;
-        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; } = null!;
-        public virtual DbSet<AspNetUserToken> AspNetUserTokens { get; set; } = null!;
         public virtual DbSet<AssignHouse> AssignHouses { get; set; } = null!;
         public virtual DbSet<AssignProject> AssignProjects { get; set; } = null!;
         public virtual DbSet<AssignStaff> AssignStaffs { get; set; } = null!;
         public virtual DbSet<AssignTask> AssignTasks { get; set; } = null!;
         public virtual DbSet<AssignTaskImage> AssignTaskImages { get; set; } = null!;
-        public virtual DbSet<BankMaster> BankMasters { get; set; } = null!;
         public virtual DbSet<BoQFloor> BoQFloors { get; set; } = null!;
         public virtual DbSet<BoQMaster> BoQMasters { get; set; } = null!;
         public virtual DbSet<BoQTask> BoQTasks { get; set; } = null!;
@@ -42,7 +33,6 @@ namespace Group_Task.Models
         public virtual DbSet<BoqReport> BoqReports { get; set; } = null!;
         public virtual DbSet<Category> Categories { get; set; } = null!;
         public virtual DbSet<Classify> Classifies { get; set; } = null!;
-        public virtual DbSet<CommuneMaster> CommuneMasters { get; set; } = null!;
         public virtual DbSet<Company> Companies { get; set; } = null!;
         public virtual DbSet<Complain> Complains { get; set; } = null!;
         public virtual DbSet<ConditionBonu> ConditionBonus { get; set; } = null!;
@@ -58,7 +48,6 @@ namespace Group_Task.Models
         public virtual DbSet<DepartmentSubMaster> DepartmentSubMasters { get; set; } = null!;
         public virtual DbSet<Design> Designs { get; set; } = null!;
         public virtual DbSet<DesignProgress> DesignProgresses { get; set; } = null!;
-        public virtual DbSet<DistrictMaster> DistrictMasters { get; set; } = null!;
         public virtual DbSet<Employee> Employees { get; set; } = null!;
         public virtual DbSet<ExceptionBarrel> ExceptionBarrels { get; set; } = null!;
         public virtual DbSet<ExpendHouseType> ExpendHouseTypes { get; set; } = null!;
@@ -86,13 +75,11 @@ namespace Group_Task.Models
         public virtual DbSet<ItemObject> ItemObjects { get; set; } = null!;
         public virtual DbSet<ItemPlan> ItemPlans { get; set; } = null!;
         public virtual DbSet<ItemPlanLocation> ItemPlanLocations { get; set; } = null!;
+        public virtual DbSet<ItemType> ItemTypes { get; set; } = null!;
         public virtual DbSet<ItemUsed> ItemUseds { get; set; } = null!;
         public virtual DbSet<Itemsmaterial> Itemsmaterials { get; set; } = null!;
         public virtual DbSet<Key> Keys { get; set; } = null!;
         public virtual DbSet<Lead> Leads { get; set; } = null!;
-        public virtual DbSet<LeaveBalanceMaster> LeaveBalanceMasters { get; set; } = null!;
-        public virtual DbSet<LeaveMoneyMaster> LeaveMoneyMasters { get; set; } = null!;
-        public virtual DbSet<LeaveTypePolicyMaster> LeaveTypePolicyMasters { get; set; } = null!;
         public virtual DbSet<Loa> Loas { get; set; } = null!;
         public virtual DbSet<LoaDetail> LoaDetails { get; set; } = null!;
         public virtual DbSet<LoaReport> LoaReports { get; set; } = null!;
@@ -102,15 +89,12 @@ namespace Group_Task.Models
         public virtual DbSet<LocationTask> LocationTasks { get; set; } = null!;
         public virtual DbSet<LogRecord> LogRecords { get; set; } = null!;
         public virtual DbSet<LogTime> LogTimes { get; set; } = null!;
-        public virtual DbSet<ManageBlock> ManageBlocks { get; set; } = null!;
         public virtual DbSet<MaterialType> MaterialTypes { get; set; } = null!;
         public virtual DbSet<Measure> Measures { get; set; } = null!;
         public virtual DbSet<Module> Modules { get; set; } = null!;
         public virtual DbSet<MoneyByWeek> MoneyByWeeks { get; set; } = null!;
         public virtual DbSet<MonthlyReward> MonthlyRewards { get; set; } = null!;
         public virtual DbSet<MonthlyRewardDetail> MonthlyRewardDetails { get; set; } = null!;
-        public virtual DbSet<NationMaster> NationMasters { get; set; } = null!;
-        public virtual DbSet<NationalityMaster> NationalityMasters { get; set; } = null!;
         public virtual DbSet<OpenScope> OpenScopes { get; set; } = null!;
         public virtual DbSet<PayMonth> PayMonths { get; set; } = null!;
         public virtual DbSet<Payment> Payments { get; set; } = null!;
@@ -130,7 +114,6 @@ namespace Group_Task.Models
         public virtual DbSet<Purchase> Purchases { get; set; } = null!;
         public virtual DbSet<PurchaseDetail> PurchaseDetails { get; set; } = null!;
         public virtual DbSet<PurchaseRequest> PurchaseRequests { get; set; } = null!;
-        public virtual DbSet<RelationMaster> RelationMasters { get; set; } = null!;
         public virtual DbSet<Report> Reports { get; set; } = null!;
         public virtual DbSet<ReportPvcClaim> ReportPvcClaims { get; set; } = null!;
         public virtual DbSet<Result> Results { get; set; } = null!;
@@ -168,7 +151,6 @@ namespace Group_Task.Models
         public virtual DbSet<View4> View4s { get; set; } = null!;
         public virtual DbSet<View5> View5s { get; set; } = null!;
         public virtual DbSet<View7> View7s { get; set; } = null!;
-        public virtual DbSet<VillageMaster> VillageMasters { get; set; } = null!;
         public virtual DbSet<Warehouse> Warehouses { get; set; } = null!;
         public virtual DbSet<Week> Weeks { get; set; } = null!;
         public virtual DbSet<Weekend> Weekends { get; set; } = null!;
@@ -185,55 +167,11 @@ namespace Group_Task.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<AspNetRole>(entity =>
-            {
-                entity.HasIndex(e => e.NormalizedName, "RoleNameIndex")
-                    .IsUnique()
-                    .HasFilter("([NormalizedName] IS NOT NULL)");
-            });
-
-            modelBuilder.Entity<AspNetUser>(entity =>
-            {
-                entity.HasIndex(e => e.NormalizedUserName, "UserNameIndex")
-                    .IsUnique()
-                    .HasFilter("([NormalizedUserName] IS NOT NULL)");
-
-                entity.HasMany(d => d.Roles)
-                    .WithMany(p => p.Users)
-                    .UsingEntity<Dictionary<string, object>>(
-                        "AspNetUserRole",
-                        l => l.HasOne<AspNetRole>().WithMany().HasForeignKey("RoleId"),
-                        r => r.HasOne<AspNetUser>().WithMany().HasForeignKey("UserId"),
-                        j =>
-                        {
-                            j.HasKey("UserId", "RoleId");
-
-                            j.ToTable("AspNetUserRoles");
-
-                            j.HasIndex(new[] { "RoleId" }, "IX_AspNetUserRoles_RoleId");
-                        });
-            });
-
-            modelBuilder.Entity<AspNetUserLogin>(entity =>
-            {
-                entity.HasKey(e => new { e.LoginProvider, e.ProviderKey });
-            });
-
-            modelBuilder.Entity<AspNetUserToken>(entity =>
-            {
-                entity.HasKey(e => new { e.UserId, e.LoginProvider, e.Name });
-            });
-
             modelBuilder.Entity<AssignTaskImage>(entity =>
             {
                 entity.Property(e => e.ImageId).ValueGeneratedNever();
 
                 entity.Property(e => e.Time).IsFixedLength();
-            });
-
-            modelBuilder.Entity<BankMaster>(entity =>
-            {
-                entity.Property(e => e.BankId).ValueGeneratedNever();
             });
 
             modelBuilder.Entity<BoQFloor>(entity =>
@@ -264,11 +202,6 @@ namespace Group_Task.Models
             modelBuilder.Entity<BoqReport>(entity =>
             {
                 entity.ToView("boq_report");
-            });
-
-            modelBuilder.Entity<CommuneMaster>(entity =>
-            {
-                entity.Property(e => e.CommuneId).ValueGeneratedNever();
             });
 
             modelBuilder.Entity<Company>(entity =>
@@ -310,11 +243,6 @@ namespace Group_Task.Models
                 entity.Property(e => e.DepartmentSubId).ValueGeneratedNever();
             });
 
-            modelBuilder.Entity<DistrictMaster>(entity =>
-            {
-                entity.Property(e => e.DistrictId).ValueGeneratedNever();
-            });
-
             modelBuilder.Entity<Expendmonth>(entity =>
             {
                 entity.HasKey(e => e.Autonum)
@@ -353,21 +281,6 @@ namespace Group_Task.Models
             {
                 entity.HasKey(e => e.ItemId)
                     .HasName("PK__itemsmat__52020FDD61C4B5D6");
-            });
-
-            modelBuilder.Entity<LeaveBalanceMaster>(entity =>
-            {
-                entity.Property(e => e.LeaveBalanceId).ValueGeneratedNever();
-            });
-
-            modelBuilder.Entity<LeaveMoneyMaster>(entity =>
-            {
-                entity.Property(e => e.LeaveMoneyId).ValueGeneratedNever();
-            });
-
-            modelBuilder.Entity<LeaveTypePolicyMaster>(entity =>
-            {
-                entity.Property(e => e.LeaveTypePolicyId).ValueGeneratedNever();
             });
 
             modelBuilder.Entity<Loa>(entity =>
@@ -431,11 +344,6 @@ namespace Group_Task.Models
             modelBuilder.Entity<Project>(entity =>
             {
                 entity.Property(e => e.DefaultProject).HasComment("Selected in Combo Box");
-            });
-
-            modelBuilder.Entity<RelationMaster>(entity =>
-            {
-                entity.Property(e => e.RelationId).ValueGeneratedNever();
             });
 
             modelBuilder.Entity<ReportPvcClaim>(entity =>
@@ -551,11 +459,6 @@ namespace Group_Task.Models
                 entity.ToView("View_7");
 
                 entity.Property(e => e.HouseId).ValueGeneratedOnAdd();
-            });
-
-            modelBuilder.Entity<VillageMaster>(entity =>
-            {
-                entity.Property(e => e.VillageId).ValueGeneratedNever();
             });
 
             modelBuilder.Entity<Warehouse>(entity =>
