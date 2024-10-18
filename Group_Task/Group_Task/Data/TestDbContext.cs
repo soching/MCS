@@ -30,6 +30,7 @@ namespace Group_Task.Models
         public virtual DbSet<BoQitem> BoQitems { get; set; } = null!;
         public virtual DbSet<Booking> Bookings { get; set; } = null!;
         public virtual DbSet<BookingDetail> BookingDetails { get; set; } = null!;
+        public virtual DbSet<BoqDetail> BoqDetails { get; set; } = null!;
         public virtual DbSet<BoqReport> BoqReports { get; set; } = null!;
         public virtual DbSet<Category> Categories { get; set; } = null!;
         public virtual DbSet<Classify> Classifies { get; set; } = null!;
