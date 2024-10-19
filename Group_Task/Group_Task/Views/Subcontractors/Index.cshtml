@@ -1,0 +1,170 @@
+﻿@model IPagedList<Group_Task.Models.Subcontractor>
+@using X.PagedList;
+@using X.PagedList.Mvc.Core;
+@using X.PagedList.Mvc.Core.Common;
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="page-bar">
+    <div class="page-breadcrumb">
+        <a class="fw-bold font-dark text-dark " asp-controller="Home">Home</a> |
+        <a class="fw-bold font-dark text-dark " asp-controller="Subcontractors">Subcontractor</a>
+    </div>
+    <div class="page-toolbar">
+        <i class="bi-calendar-day me-2"></i>
+        <span class="thin text-uppercase hidden-xs">August 20, 2024 - September 18, 2024</span>
+    </div>
+</div>
+
+<div class="container my-3">
+    <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <a class="navbar-brand mb-0">Subcontractor</a>
+            <div >
+                <button class="btn btn-secondary " type="button">
+                    <a class="text-white" asp-action="Create">Add New</a>
+                </button>
+                <button class="btn btn-secondary" type="button" asp-action="Subcontractors">Download</button>                
+                <button class="btn btn-secondary" type="button" data-bs-toggle="modal" data-bs-target="#upload">Upload</button>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <form method="get" asp-action="Index">
+                <p>
+                    <a asp-action="Index" class="btn btn-primary mb-3">All Items</a>
+                    <a class="btn btn-success mb-3" asp-action="Create">Create New</a>
+                    <input type="search"
+                           placeholder="Enter name type id card"
+                           value="@ViewData["Getemployeedetails"]"
+                           name="Empsearch"
+                           class="form-control form-control-sm"
+                           style="width: 250px; padding: 5px; font-size: 14px;" />
+                </p>
+            </form>
+
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>
+                            ProjectName
+                        </th>
+                        <th>
+                          IdCard
+                        </th>
+                        <th>
+                           SubName
+                        </th>
+                        <th>
+                           Tel
+                        </th>
+                        <th>
+                            SubAddress
+                        </th>
+                        <th>
+                            SubType
+                        </th>
+                        <th>
+                            SubStatus
+                        </th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ProjectName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IdCard)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SubName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Tel)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SubAddress)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SubType)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SubStatus)
+                            </td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Upload -->
+<div class="modal fade" id="upload" tabindex="-1" aria-labelledby="addNewModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header" style="background-color: dodgerblue;">
+                <span class="modal-title" id="addNewModalLabel" style="color: white;">Upload Document</span>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <h6 class="ms-2"><strong></strong> <span class="required" style="color:black; font-size:30px">*</span><strong>Upload Item Group</strong></h6>
+
+            <p class="p-2">
+                The first line in downloaded csv file should remain as it is. Please do not change the order of columns.
+                The correct column order is () & you must follow this. Please make sure the csv file is UTF-8 encoded and not saved with byte order mark (BOM).
+            </p>
+            <!-- Modal Body with Form -->
+            <div class="modal-body">
+                <form>
+                    <!-- Working Type -->
+                    <div class="row mb-3">
+                        <label for="supplierStatus" class="col-sm-4 col-form-label"><strong>Working Type</strong> <span class="required" style="color:red;">*</span></label>
+                        <div class="col-sm-8">
+                            <select class="form-select" id="supplierStatus" required>
+                                <option value="" selected disabled>Please choose</option>
+                                <option value="active">example</option>
+                                <option value="inactive">example</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Document Upload -->
+                    <div class="row mb-3">
+                        <label for="supplierDocument" class="col-sm-4 col-form-label"><strong>Upload Document</strong> <span class="required" style="color:red;">*</span></label>
+                        <div class="col-sm-8">
+                            <input type="file" class="form-control" id="supplierDocument" required>
+                            <div class="form-text">Please upload a document.</div>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button and Cancel -->
+                    <div class="d-flex justify-content-end">
+                        <button type="button" class="btn btn-danger me-2" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@Html.PagedListPager(Model, page => Url.Action("index", "Subcontractors",
+         new { page = page }),
+                        new PagedListRenderOptions
+                    {
+                        LiElementClasses = new string[] { "page-item" },
+                        PageClasses = new string[] { "page-link" }
+                    })

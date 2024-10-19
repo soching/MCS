@@ -1,0 +1,63 @@
+﻿@model Group_Task.Models.Subcontractor
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Subcontractor</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ProjectName" class="control-label"></label>
+                <input asp-for="ProjectName" class="form-control" />
+                <span asp-validation-for="ProjectName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdCard" class="control-label"></label>
+                <input asp-for="IdCard" class="form-control" />
+                <span asp-validation-for="IdCard" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SubName" class="control-label"></label>
+                <input asp-for="SubName" class="form-control" />
+                <span asp-validation-for="SubName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tel" class="control-label"></label>
+                <input asp-for="Tel" class="form-control" />
+                <span asp-validation-for="Tel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SubAddress" class="control-label"></label>
+                <input asp-for="SubAddress" class="form-control" />
+                <span asp-validation-for="SubAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SubType" class="control-label"></label>
+                <input asp-for="SubType" class="form-control" />
+                <span asp-validation-for="SubType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SubStatus" class="control-label"></label>
+                <input asp-for="SubStatus" class="form-control" />
+                <span asp-validation-for="SubStatus" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
