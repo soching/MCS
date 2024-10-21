@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace Group_Task.Models
+namespace Group_Task.Model
 {
     public partial class TestDbContext : DbContext
     {
@@ -23,6 +23,7 @@ namespace Group_Task.Models
         public virtual DbSet<AssignStaff> AssignStaffs { get; set; } = null!;
         public virtual DbSet<AssignTask> AssignTasks { get; set; } = null!;
         public virtual DbSet<AssignTaskImage> AssignTaskImages { get; set; } = null!;
+        public virtual DbSet<Block> Blocks { get; set; } = null!;
         public virtual DbSet<BoQFloor> BoQFloors { get; set; } = null!;
         public virtual DbSet<BoQMaster> BoQMasters { get; set; } = null!;
         public virtual DbSet<BoQTask> BoQTasks { get; set; } = null!;
@@ -34,6 +35,7 @@ namespace Group_Task.Models
         public virtual DbSet<BoqReport> BoqReports { get; set; } = null!;
         public virtual DbSet<BoqWorkingType> BoqWorkingTypes { get; set; } = null!;
         public virtual DbSet<Brand> Brands { get; set; } = null!;
+        public virtual DbSet<Building> Buildings { get; set; } = null!;
         public virtual DbSet<Category> Categories { get; set; } = null!;
         public virtual DbSet<Classify> Classifies { get; set; } = null!;
         public virtual DbSet<Company> Companies { get; set; } = null!;
@@ -116,7 +118,10 @@ namespace Group_Task.Models
         public virtual DbSet<Project> Projects { get; set; } = null!;
         public virtual DbSet<Purchase> Purchases { get; set; } = null!;
         public virtual DbSet<PurchaseDetail> PurchaseDetails { get; set; } = null!;
+        public virtual DbSet<PurchaseOrder> PurchaseOrders { get; set; } = null!;
+        public virtual DbSet<PurchaseOrderList> PurchaseOrderLists { get; set; } = null!;
         public virtual DbSet<PurchaseRequest> PurchaseRequests { get; set; } = null!;
+        public virtual DbSet<PurchaseRequestList> PurchaseRequestLists { get; set; } = null!;
         public virtual DbSet<Report> Reports { get; set; } = null!;
         public virtual DbSet<ReportPvcClaim> ReportPvcClaims { get; set; } = null!;
         public virtual DbSet<Result> Results { get; set; } = null!;
@@ -165,7 +170,7 @@ namespace Group_Task.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=lb;Database=testdb; user id = soching; pwd=123456789;");
+                optionsBuilder.UseSqlServer("Server=lb;Database=testdb; user id = kunthea; pwd=12345678;");
             }
         }
 
@@ -348,6 +353,24 @@ namespace Group_Task.Models
             modelBuilder.Entity<Project>(entity =>
             {
                 entity.Property(e => e.DefaultProject).HasComment("Selected in Combo Box");
+            });
+
+            modelBuilder.Entity<PurchaseOrder>(entity =>
+            {
+                entity.HasKey(e => e.OrderId)
+                    .HasName("PK__Purchase__F1E4607BDDBDF006");
+            });
+
+            modelBuilder.Entity<PurchaseOrderList>(entity =>
+            {
+                entity.HasKey(e => e.OrderlistId)
+                    .HasName("PK__Purchase__C5257AE77F7A45E3");
+            });
+
+            modelBuilder.Entity<PurchaseRequestList>(entity =>
+            {
+                entity.HasKey(e => e.RequestlistId)
+                    .HasName("PK__Purchase__905D41829E128F17");
             });
 
             modelBuilder.Entity<ReportPvcClaim>(entity =>

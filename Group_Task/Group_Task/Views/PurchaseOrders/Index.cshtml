@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Group_Task.Models.PurchaseOrder>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr style="font-size:smaller;">
+            <th>P.O.Number</th>
+            <th>P.R.Number</th>
+            <th>Schedule Date</th>
+            <th>Approve Date</th>
+            <th>Sub-Total</th>
+            <th>Discount</th>
+            <th>Tax</th>
+            <th>Deposit</th>
+            <th>Grand_Total</th>
+            <th>Status</th>
+            <th>Attachment</th>
+            <th>Create By</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.PoNo)</td>
+                <td>@Html.DisplayFor(modelItem => item.PoDate)</td>
+                <td>@Html.DisplayFor(modelItem => item.PoDate)</td>
+                <td>@Html.DisplayFor(modelItem => item.PoDate)</td>
+                <td>@Html.DisplayFor(modelItem => item.Suppliers)</td>
+                <td>@Html.DisplayFor(modelItem => item.OrderBy)</td>
+                <td>@Html.DisplayFor(modelItem => item.ItemType)</td>
+                <td>@Html.DisplayFor(modelItem => item.TermsOfPayment)</td>
+                <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                <td>@Html.DisplayFor(modelItem => item.ItemType)</td>
+                <td>@Html.DisplayFor(modelItem => item.ItemType)</td>
+                <td>@Html.DisplayFor(modelItem => item.Note)</td>
+                <td>
+                    <a asp-action="#" asp-route-id="@item.OrderId">Print</a> |
+                    <a asp-action="Edit" asp-route-id="@item.OrderId">Edit</a> |
+                    <a asp-action="#" asp-route-id="@item.OrderId">View</a> |
+                    <a asp-action="Delete" asp-route-id="@item.OrderId">Delete</a> |
+                    <a asp-action="#" asp-route-id="@item.OrderId">Close</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
