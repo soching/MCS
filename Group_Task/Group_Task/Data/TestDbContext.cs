@@ -23,6 +23,7 @@ namespace Group_Task.Models
         public virtual DbSet<AssignStaff> AssignStaffs { get; set; } = null!;
         public virtual DbSet<AssignTask> AssignTasks { get; set; } = null!;
         public virtual DbSet<AssignTaskImage> AssignTaskImages { get; set; } = null!;
+        public virtual DbSet<Block> Blocks { get; set; } = null!;
         public virtual DbSet<BoQFloor> BoQFloors { get; set; } = null!;
         public virtual DbSet<BoQMaster> BoQMasters { get; set; } = null!;
         public virtual DbSet<BoQTask> BoQTasks { get; set; } = null!;
@@ -34,6 +35,7 @@ namespace Group_Task.Models
         public virtual DbSet<BoqReport> BoqReports { get; set; } = null!;
         public virtual DbSet<BoqWorkingType> BoqWorkingTypes { get; set; } = null!;
         public virtual DbSet<Brand> Brands { get; set; } = null!;
+        public virtual DbSet<Building> Buildings { get; set; } = null!;
         public virtual DbSet<Category> Categories { get; set; } = null!;
         public virtual DbSet<Classify> Classifies { get; set; } = null!;
         public virtual DbSet<Company> Companies { get; set; } = null!;
@@ -116,6 +118,7 @@ namespace Group_Task.Models
         public virtual DbSet<Project> Projects { get; set; } = null!;
         public virtual DbSet<Purchase> Purchases { get; set; } = null!;
         public virtual DbSet<PurchaseDetail> PurchaseDetails { get; set; } = null!;
+        public virtual DbSet<PurchaseOrder> PurchaseOrders { get; set; } = null!;
         public virtual DbSet<PurchaseRequest> PurchaseRequests { get; set; } = null!;
         public virtual DbSet<Report> Reports { get; set; } = null!;
         public virtual DbSet<ReportPvcClaim> ReportPvcClaims { get; set; } = null!;
@@ -349,6 +352,13 @@ namespace Group_Task.Models
             {
                 entity.Property(e => e.DefaultProject).HasComment("Selected in Combo Box");
             });
+
+            modelBuilder.Entity<PurchaseOrder>(entity =>
+            {
+                entity.HasKey(e => e.OrderId)
+                    .HasName("PK__Purchase__F1E4607BDDBDF006");
+            });
+
 
             modelBuilder.Entity<ReportPvcClaim>(entity =>
             {
