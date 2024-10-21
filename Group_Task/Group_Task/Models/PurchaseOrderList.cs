@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-namespace Group_Task.Model
+namespace Group_Task.Models
 {
     [Table("Purchase_Order_List")]
     public partial class PurchaseOrderList
