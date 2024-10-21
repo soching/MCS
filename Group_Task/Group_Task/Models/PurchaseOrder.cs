@@ -36,6 +36,8 @@ namespace Group_Task.Models
         public string TermsOfPayment { get; set; } = null!;
         [StringLength(50)]
         public string Status { get; set; } = null!;
+
         public string Note { get; set; } = null!;
     }
 }
+

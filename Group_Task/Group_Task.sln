@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35222.181
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Group_Task", "Group_Task\Group_Task.csproj", "{1D961BB7-525E-4876-B4EA-DA924549B3E0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Group_Task", "Group_Task\Group_Task.csproj", "{1D961BB7-525E-4876-B4EA-DA924549B3E0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

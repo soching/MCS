@@ -168,7 +168,7 @@ namespace Group_Task.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=lb;Database=testdb; user id = soching; pwd=123456789;");
+                optionsBuilder.UseSqlServer("Server=lb;Database=testdb; user id = kunthea; pwd=12345678;");
             }
         }
 
@@ -357,6 +357,19 @@ namespace Group_Task.Models
             {
                 entity.HasKey(e => e.OrderId)
                     .HasName("PK__Purchase__F1E4607BDDBDF006");
+            });
+
+
+            modelBuilder.Entity<PurchaseOrderList>(entity =>
+            {
+                entity.HasKey(e => e.OrderlistId)
+                    .HasName("PK__Purchase__C5257AE77F7A45E3");
+            });
+
+            modelBuilder.Entity<PurchaseRequestList>(entity =>
+            {
+                entity.HasKey(e => e.RequestlistId)
+                    .HasName("PK__Purchase__905D41829E128F17");
             });
 
 
