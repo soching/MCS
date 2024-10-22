@@ -165,6 +165,7 @@ namespace Group_Task.Models
         public virtual DbSet<Warehouse> Warehouses { get; set; } = null!;
         public virtual DbSet<Week> Weeks { get; set; } = null!;
         public virtual DbSet<Weekend> Weekends { get; set; } = null!;
+        public virtual DbSet<WorkingType> WorkingTypes { get; set; } = null!;
         public virtual DbSet<Zone> Zones { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
