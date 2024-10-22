@@ -139,6 +139,7 @@ namespace Group_Task.Models
         public virtual DbSet<SetupTask> SetupTasks { get; set; } = null!;
         public virtual DbSet<SetupTaskDetail> SetupTaskDetails { get; set; } = null!;
         public virtual DbSet<Solution> Solutions { get; set; } = null!;
+        public virtual DbSet<Street> Streets { get; set; } = null!;
         public virtual DbSet<Subcontractor> Subcontractors { get; set; } = null!;
         public virtual DbSet<Supplier> Suppliers { get; set; } = null!;
         public virtual DbSet<Task> Tasks { get; set; } = null!;
@@ -169,6 +170,7 @@ namespace Group_Task.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
                 optionsBuilder.UseSqlServer("Server=lb;Database=testdb; user id = soching; pwd=123456789;");
             }
         }
