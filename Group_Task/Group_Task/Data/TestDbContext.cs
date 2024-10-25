@@ -140,6 +140,7 @@ namespace Group_Task.Models
         public virtual DbSet<SetupTaskDetail> SetupTaskDetails { get; set; } = null!;
         public virtual DbSet<Solution> Solutions { get; set; } = null!;
         public virtual DbSet<StockEntry> StockEntries { get; set; } = null!;
+        public virtual DbSet<StockTransfer> StockTransfers { get; set; } = null!;
         public virtual DbSet<Street> Streets { get; set; } = null!;
         public virtual DbSet<Subcontractor> Subcontractors { get; set; } = null!;
         public virtual DbSet<Supplier> Suppliers { get; set; } = null!;

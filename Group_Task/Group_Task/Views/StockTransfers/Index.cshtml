@@ -1,0 +1,232 @@
+﻿@model IPagedList<Group_Task.Models.StockTransfer>
+@using X.PagedList;
+@using X.PagedList.Mvc.Core;
+@using X.PagedList.Mvc.Core.Common;
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="page-bar">
+    <div class="page-breadcrumb">
+        <a class="fw-bold font-dark text-dark " asp-controller="StockTransfers">Stock Transfer</a> |
+        <span>Stock Transfer</span>
+    </div>
+    <div class="page-toolbar">
+        <i class="bi-calendar-day me-2"></i>
+        <span class="thin text-uppercase hidden-xs">August 20, 2024 - September 18, 2024</span>
+    </div>
+</div>
+
+
+<div class="container my-3">
+    <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <a class="navbar-brand mb-0">Stock Transfer</a>
+            <div>
+                <button type="button" class="rounded-pill list-unstyled btn-light border border-secondary me-2 p-2" data-bs-toggle="modal" data-bs-target="#addNewModal">Add New</button>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <form method="get" asp-action="Index">
+                <p>
+                    <a asp-action="Index" class="btn btn-primary mb-3">All Items</a>
+                    <a class="btn btn-success mb-3" asp-action="Create">Create New</a>
+                    <input type="search"
+                           placeholder="Enter reference no reference description"
+                           value="@ViewData["Getemployeedetails"]"
+                           name="Empsearch"
+                           class="form-control form-control-sm"
+                           style="width: 250px; padding: 5px; font-size: 14px;" />
+                </p>
+            </form>
+
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>
+                            ReferenceNo
+                        </th>
+                        <th>
+                            TransactionDate
+                        </th>
+                        <th>
+                            Reference
+                        </th>
+                        <th>
+                            Descriptions
+                        </th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ReferenceNo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TransactionDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Reference)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Descriptions)
+                            </td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Add New -->
+<div class="modal fade" id="addNewModal" tabindex="-1" aria-labelledby="addNewModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" style="max-width: 90%; height: 80vh;">
+        <!-- Increased size -->
+        <div class="modal-content" style="height: 100%;">
+            <!-- Full height -->
+            <!-- Modal Header -->
+            <div class="modal-header bg-secondary text-white">
+                <span class="modal-title" id="addNewModalLabel"><strong>Add New</strong></span>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <!-- Modal Body with Form -->
+            <div class="modal-body p-4" style="overflow-y: auto;">
+                <!-- Added scroll for content -->
+                <form>
+                    <div class="row mb-3" style="border: 1px solid #dee2e6; border-radius: 5px; padding: 15px; background-color: #f8f9fa;">
+                        <!-- Left Column (Reference No, Transaction Date, Supplier) -->
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="referenceNo" class="form-label"><b>Reference No.</b></label>
+                                <input type="text" class="form-control" id="referenceNo" placeholder="Enter reference number" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="transactionDate" class="form-label"><b>Transaction Date</b></label>
+                                <input type="date" class="form-control" id="transactionDate" placeholder="Enter transaction date" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="Reference" class="form-label"><b>Reference</b></label>
+                                <select class="form-control" id="Reference">
+                                    <option selected>Select Reference</option>
+                                    <option value="1">Supplier 1</option>
+                                    <option value="2">Supplier 2</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Right Column (Description) -->
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="description" class="form-label"><strong>Description</strong> <span class="text-danger">*</span></label>
+                                <textarea class="form-control" id="description" rows="7" placeholder="Enter your description" required></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="scan" required>
+                            <button class="btn btn-primary" type="button" id="scanButton">Scan Now</button>
+                        </div>
+                    </div>
+
+                    <div class="modal-body">
+                        <table class="table table-bordered table-striped table-hover">
+                            <thead class="bg-secondary text-white">
+                                <tr class="text-center">
+                                    <th>No.</th>
+                                    <th>From Warehouse</th>
+                                    <th>To Warehouse</th>
+                                    <th>Items Material</th>
+                                    <th>Brand</th>
+                                    <th>UOM</th>
+                                    <th>Stock Qty</th>
+                                    <th>Qty</th>
+                                    <th>Note</th>
+                                    <th class="d-flex justify-content-center align-items-center">
+                                        <button type="submit" class="btn btn-primary"><b>+</b></button>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><b>001</b></td>
+                                    <td>
+                                        <select class="form-control form-control-sm w-100">
+                                            <option value="">Please choose</option>
+                                            <option value="supplier1">Warehouse 1</option>
+                                            <option value="supplier2">Warehouse 2</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control form-control-sm w-100">
+                                            <option value="">Please choose</option>
+                                            <option value="material1">Material 1</option>
+                                            <option value="material2">Material 2</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control form-control-sm w-100">
+                                            <option value="">Please choose</option>
+                                            <option value="brand1">Brand 1</option>
+                                            <option value="brand2">Brand 2</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control form-control-sm w-100">
+                                            <option value="">Please choose</option>
+                                            <option value="uom1">UOM 1</option>
+                                            <option value="uom2">UOM 2</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control form-control-sm w-100" />
+                                    </td>
+                                    <td>
+                                        <input type="number" class="form-control form-control-sm w-100" />
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control form-control-sm w-100" />
+                                    </td>
+                                    <td class="text-center">
+                                        <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                    <!-- Submit Button and Cancel -->
+                    <div class="d-flex justify-content-end mt-4">
+                        <button type="button" class="btn btn-danger me-2" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary me-2">Save & New</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@Html.PagedListPager(Model, page => Url.Action("index", "StockTransfers",
+                 new { page = page }),
+                                new PagedListRenderOptions
+                            {
+                                LiElementClasses = new string[] { "page-item" },
+                                PageClasses = new string[] { "page-link" }
+                            })
