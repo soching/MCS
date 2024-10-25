@@ -61,6 +61,7 @@ namespace Group_Task.Models
         public virtual DbSet<Floor> Floors { get; set; } = null!;
         public virtual DbSet<FollowUp> FollowUps { get; set; } = null!;
         public virtual DbSet<Gldatum> Gldata { get; set; } = null!;
+        public virtual DbSet<GoodReceivedReturn> GoodReceivedReturns { get; set; } = null!;
         public virtual DbSet<GroupCon> GroupCons { get; set; } = null!;
         public virtual DbSet<GroupHouseType> GroupHouseTypes { get; set; } = null!;
         public virtual DbSet<GroupPosition> GroupPositions { get; set; } = null!;
