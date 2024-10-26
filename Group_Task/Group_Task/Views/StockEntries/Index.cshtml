@@ -5,6 +5,9 @@
 
 @{
     ViewData["Title"] = "Index";
+    var db = new TestDbContext();
+    //get name supplier from table suppliers 
+    var supplier = from s in db.Suppliers select new SelectListItem { Value = s.Id.ToString(), Text = s.Names };
 }
 
 <div class="page-bar">
@@ -17,7 +20,6 @@
         <span class="thin text-uppercase hidden-xs">August 20, 2024 - September 18, 2024</span>
     </div>
 </div>
-
 
 <div class="container my-3">
     <div class="card">
@@ -119,11 +121,7 @@
 
                             <div class="mb-3">
                                 <label for="supplier" class="form-label"><b>Suppliers</b></label>
-                                <select class="form-control" id="supplier">
-                                    <option selected>Select supplier</option>
-                                    <option value="1">Supplier 1</option>
-                                    <option value="2">Supplier 2</option>
-                                </select>
+                                @Html.DropDownList("TaskName", supplier, new { @class = "form-control" })
                             </div>
                         </div>
 
@@ -165,8 +163,7 @@
                                     <td>
                                         <select class="form-control form-control-sm">
                                             <option value="">Please choose</option>
-                                            <option value="supplier1">Warehouse 1</option>
-                                            <option value="supplier2">Warehouse 2</option>
+                                            <option value="material1">warehouse 1</option>
                                         </select>
                                     </td>
                                     <td>
