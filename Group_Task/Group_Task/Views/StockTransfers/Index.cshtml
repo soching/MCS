@@ -5,6 +5,8 @@
 
 @{
     ViewData["Title"] = "Index";
+    var db = new TestDbContext();
+    var reference = from RF in db.StockTransfers select new SelectListItem { Value = RF.Id.ToString(), Text = RF.Reference };
 }
 
 <div class="page-bar">
@@ -44,7 +46,7 @@
 
             <table class="table table-bordered table-striped">
                 <thead>
-                    <tr>
+                    <tr class="text-center">
                         <th>
                             ReferenceNo
                         </th>
@@ -119,11 +121,7 @@
 
                             <div class="mb-3">
                                 <label for="Reference" class="form-label"><b>Reference</b></label>
-                                <select class="form-control" id="Reference">
-                                    <option selected>Select Reference</option>
-                                    <option value="1">Supplier 1</option>
-                                    <option value="2">Supplier 2</option>
-                                </select>
+                                @Html.DropDownList("TaskName", reference, new { @class = "form-control" })
                             </div>
                         </div>
 
