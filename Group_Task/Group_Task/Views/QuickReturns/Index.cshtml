@@ -1,19 +1,28 @@
-﻿@model IPagedList<Group_Task.Models.StockEntry>
+﻿@model IPagedList<Group_Task.Models.QuickReturn>
 @using X.PagedList;
 @using X.PagedList.Mvc.Core;
 @using X.PagedList.Mvc.Core.Common;
 
 @{
     ViewData["Title"] = "Index";
+}
+
+
+@{
+    ViewData["Title"] = "Index";
     var db = new TestDbContext();
     //get name supplier from table suppliers 
     var supplier = from s in db.Suppliers select new SelectListItem { Value = s.Id.ToString(), Text = s.Names };
+    var building = from b in db.Buildings select new SelectListItem { Value = b.Id.ToString(), Text = b.Names };
+    var houseno = from h in db.BoqDetails select new SelectListItem { Value = h.Id.ToString(), Text = h.HouseNo };
+    var subcontractor = from s in db.Subcontractors select new SelectListItem { Value = s.Id.ToString(), Text = s.SubName};
+    var warehouse = from w in db.Warehouses select new SelectListItem { Value = w.IdWarehouse.ToString(), Text = w.NameWarehouse };
 }
 
 <div class="page-bar">
     <div class="page-breadcrumb">
-        <a class="fw-bold font-dark text-dark " asp-controller="Streets">Stock Entry</a> |
-        <span>Stock Entry</span>
+        <a class="fw-bold font-dark text-dark " asp-controller="Streets">Quick Return</a> |
+        <span>Quick Return</span>
     </div>
     <div class="page-toolbar">
         <i class="bi-calendar-day me-2"></i>
@@ -25,7 +34,7 @@
 <div class="my-3">
     <div class="card">
         <div class="card-header d-flex justify-content-between align-items-center">
-            <a class="navbar-brand mb-0">Stock Entry</a>
+            <a class="navbar-brand mb-0">Quick Return</a>
             <div>
                 <button type="button" class="rounded-pill list-unstyled btn-light border border-secondary me-2 p-2" data-bs-toggle="modal" data-bs-target="#addNewModal">Add New</button>
             </div>
@@ -37,7 +46,7 @@
                     <a asp-action="Index" class="btn btn-primary mb-3">All Items</a>
                     <a class="btn btn-success mb-3" asp-action="Create">Create New</a>
                     <input type="search"
-                           placeholder="Enter reference no supplier description"
+                           placeholder="Enter data in column"
                            value="@ViewData["Getemployeedetails"]"
                            name="Empsearch"
                            class="form-control form-control-sm"
@@ -52,13 +61,19 @@
                             ReferenceNo
                         </th>
                         <th>
-                           TransactionDate
+                            TransactionDate
                         </th>
                         <th>
-                            Supplier
+                            Reference
                         </th>
                         <th>
-                            Descriptions
+                            Engineer
+                        </th>
+                        <th>
+                            Subcontractor
+                        </th>
+                        <th>
+                           Descriptions
                         </th>
                         <th>Action</th>
                     </tr>
@@ -74,14 +89,20 @@
                                 @Html.DisplayFor(modelItem => item.TransactionDate)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Supplier)
+                                @Html.DisplayFor(modelItem => item.Reference)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Engineer)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Subcontractor)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Descriptions)
                             </td>
                             <td>
                                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>                                                                               
                             </td>
                         </tr>
                     }
@@ -121,19 +142,46 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="supplier" class="form-label"><b>Suppliers</b></label>
-                                @Html.DropDownList("TaskName", supplier, new { @class = "form-control" })
+                                <label for="reference" class="form-label"><b>Reference</b></label>
+                                <input type="text" class="form-control" id="reference" placeholder="Enter reference" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="supplier" class="form-label"><b>Building</b></label>
+                                @Html.DropDownList("TaskName", building, new { @class = "form-control" })
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="supplier" class="form-label"><b>House No</b></label>
+                                @Html.DropDownList("TaskName", houseno, new { @class = "form-control" })
                             </div>
                         </div>
 
-                        <!-- Right Column (Description) -->
+                        <!-- Right Column (Engineer, Subcontractor, Warehouse, and Description) -->
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label for="description" class="form-label"><strong>Description</strong> <span class="text-danger">*</span></label>
-                                <textarea class="form-control" id="description" rows="7" placeholder="Enter your description" required></textarea>
+                                <label for="engineer" class="form-label"><b>Engineer</b></label>
+                                @Html.DropDownList("TaskName", supplier, new { @class = "form-control" })
                             </div>
+
+                            <div class="mb-3">
+                                <label for="subcontractor" class="form-label"><b>Subcontractor</b></label>
+                                @Html.DropDownList("TaskName", subcontractor, new { @class = "form-control" })
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="warehouse" class="form-label"><b>Warehouse</b></label>
+                                @Html.DropDownList("TaskName", warehouse, new { @class = "form-control" })
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="description" class="form-label"><strong>Description</strong> <span class="text-danger">*</span></label>
+                                <textarea class="form-control" id="description" style="height: 100px;" placeholder="Enter your description" required></textarea>
+                            </div>
+
                         </div>
                     </div>
+
                     <div class="mb-3">
                         <div class="input-group">
                             <input type="text" class="form-control" id="scan" required>
@@ -145,62 +193,19 @@
                         <table class="table table-bordered table-striped table-hover">
                             <thead class="bg-secondary text-white">
                                 <tr class="text-center">
-                                    <th>No.</th>
-                                    <th>Warehouse</th>
+                                    <th>No.</th>                                  
                                     <th>Items Material</th>
                                     <th>Brand</th>
                                     <th>UOM</th>
+                                    <th>Used Qty</th>
                                     <th>Qty</th>
-                                    <th>Cost</th>
-                                    <th>Reference</th>
+                                    <th>Note</th>
                                     <th class="d-flex justify-content-center align-items-center">
                                         <button type="submit" class="btn btn-primary"><b>+</b></button>
                                     </th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td><b>001</b></td>
-                                    <td>
-                                        <select class="form-control form-control-sm">
-                                            <option value="">Please choose</option>
-                                            <option value="material1">warehouse 1</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <select class="form-control form-control-sm">
-                                            <option value="">Please choose</option>
-                                            <option value="material1">Material 1</option>
-                                            <option value="material2">Material 2</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <select class="form-control form-control-sm">
-                                            <option value="">Please choose</option>
-                                            <option value="brand1">Brand 1</option>
-                                            <option value="brand2">Brand 2</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <select class="form-control form-control-sm">
-                                            <option value="">Please choose</option>
-                                            <option value="uom1">UOM 1</option>
-                                            <option value="uom2">UOM 2</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <input type="number" class="form-control form-control-sm" min="0" step="0.01" />
-                                    </td>
-                                    <td>
-                                        <input type="number" class="form-control form-control-sm" min="0" step="0.01" />
-                                    </td>
-                                    <td>
-                                        <input type="text" class="form-control form-control-sm" />
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-danger btn-sm">Delete</button>
-                                    </td>
-                                </tr>
+                            <tbody>                               
                             </tbody>
                         </table>
                     </div>
@@ -212,6 +217,7 @@
                         <button type="submit" class="btn btn-primary">Save</button>
                     </div>
                 </form>
+                                                                                                            
 
             </div>
         </div>
@@ -219,7 +225,7 @@
 </div>
 
 
-@Html.PagedListPager(Model, page => Url.Action("index", "StockEntries",
+@Html.PagedListPager(Model, page => Url.Action("index", "QuickReturns",
                  new { page = page }),
                                 new PagedListRenderOptions
                             {

@@ -123,6 +123,7 @@ namespace Group_Task.Models
         public virtual DbSet<PurchaseOrderList> PurchaseOrderLists { get; set; } = null!;
         public virtual DbSet<PurchaseRequest> PurchaseRequests { get; set; } = null!;
         public virtual DbSet<PurchaseRequestList> PurchaseRequestLists { get; set; } = null!;
+        public virtual DbSet<QuickReturn> QuickReturns { get; set; } = null!;
         public virtual DbSet<Report> Reports { get; set; } = null!;
         public virtual DbSet<ReportPvcClaim> ReportPvcClaims { get; set; } = null!;
         public virtual DbSet<Result> Results { get; set; } = null!;
