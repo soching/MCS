@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Group_Task.Models;
 using X.PagedList;
+using System.Text;
 
 namespace Group_Task.Controllers
 {
@@ -80,6 +81,50 @@ namespace Group_Task.Controllers
             return View();
         }
 
+        // code for download excel file
+        public IActionResult Download()
+        {
+            // File name and path for saving to the desktop
+            var fileName = "ItemType.csv";
+            var filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), fileName);
+
+            // Generate CSV content for download using StringBuilder
+            var csvContent = new StringBuilder();
+            csvContent.AppendLine("Group Name,Group Code,Sub Of, Sub Of Code, Description, Company Code, Create By, Item Status");
+
+            // Retrieve the material data from the database
+            var itemtypes = GetItemType();
+            foreach (var itemtype in itemtypes)
+            {
+                csvContent.AppendLine($"{itemtype.GroupName},{itemtype.GroupCode},{itemtype.SubOf},{itemtype.SubOfCode},{itemtype.Descriptions},{itemtype.CompanyCode},{itemtype.CreateBy},{itemtype.ItemStatus}");
+            }
+
+            // Write the generated CSV content to a file on the desktop
+            System.IO.File.WriteAllText(filePath, csvContent.ToString());
+
+            // Read the file and return it as a downloadable file
+            var fileBytes = System.IO.File.ReadAllBytes(filePath);
+            return File(fileBytes, "text/csv", fileName);
+        }
+
+        // Method to get material data from the database
+        private List<ItemType> GetItemType()
+        {
+            // Fetch only the MaterialName and MaterialStatus columns from the database
+            return _context.ItemTypes
+                           .Select(i => new ItemType
+                           {
+                               GroupCode = i.GroupCode,
+                               GroupName = i.GroupName,
+                               SubOf = i.SubOf,
+                               SubOfCode = i.SubOfCode,
+                               Descriptions = i.Descriptions,
+                               CompanyCode = i.CompanyCode,
+                               CreateBy = i.CreateBy,
+                               ItemStatus = i.ItemStatus
+                           })
+                           .ToList();
+        }
         // POST: ItemTypes/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.

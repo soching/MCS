@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Group_Task.Models;
 using X.PagedList;
+using System.Text;
 
 namespace Group_Task.Controllers
 {
@@ -87,6 +88,56 @@ namespace Group_Task.Controllers
         public IActionResult Create()
         {
             return View();
+        }
+
+        // code for download excel file
+        public IActionResult Download()
+        {
+            // File name and path for saving to the desktop
+            var fileName = "BoqWorkingType.csv";
+            var filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), fileName);
+
+            // Generate CSV content for download using StringBuilder
+            var csvContent = new StringBuilder();
+            csvContent.AppendLine("BOQ No,Zone,Block, Building, House, Working Type, Amount, Transaction Date, Trans By, Trans Ref,Reference, BOQ Status, Revise Count ");
+
+            // Retrieve the material data from the database
+            var boqworkingtypes = GetBoqWorkingType();
+            foreach (var boq in boqworkingtypes)
+            {
+                csvContent.AppendLine($"{boq.BoqNo},{boq.Zones},{boq.Blocks},{boq.Building},{boq.House},{boq.WorkingType},{boq.Amount},{boq.TransactionData},{boq.TransBy},{boq.TransRef},{boq.Reference},{boq.BoqStatus},{boq.ReviseCount}");
+            }
+
+            // Write the generated CSV content to a file on the desktop
+            System.IO.File.WriteAllText(filePath, csvContent.ToString());
+
+            // Read the file and return it as a downloadable file
+            var fileBytes = System.IO.File.ReadAllBytes(filePath);
+            return File(fileBytes, "text/csv", fileName);
+        }
+
+        // Method to get material data from the database
+        private List<BoqWorkingType> GetBoqWorkingType()
+        {
+            // Fetch only the MaterialName and MaterialStatus columns from the database
+            return _context.BoqWorkingTypes
+                           .Select(b => new BoqWorkingType
+                           {
+                              BoqNo = b.BoqNo,
+                              Zones = b.Zones,
+                              Blocks = b.Blocks,
+                              Building = b.Building,
+                              House = b.House,
+                              WorkingType = b.WorkingType,
+                              Amount = b.Amount,
+                              TransactionData = b.TransactionData,
+                              TransBy = b.TransBy,
+                              TransRef = b.TransRef,
+                              Reference = b.Reference,
+                              BoqStatus = b.BoqStatus,  
+                              ReviseCount = b.ReviseCount
+                           })
+                           .ToList();
         }
 
         // POST: BoqWorkingTypes/Create

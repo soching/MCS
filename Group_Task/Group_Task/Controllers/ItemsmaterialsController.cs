@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using X.PagedList;
 using Group_Task.Models;
+using System.Text;
 
 
 namespace Items_Material.Controllers
@@ -80,6 +81,55 @@ namespace Items_Material.Controllers
         public IActionResult Create()
         {
             return View();
+        }
+
+
+        // code for download excel file
+        public IActionResult Download()
+        {
+            // File name and path for saving to the desktop
+            var fileName = "ItemMaterial.csv";
+            var filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), fileName);
+
+            // Generate CSV content for download using StringBuilder
+            var csvContent = new StringBuilder();
+            csvContent.AppendLine("Group,Sub Group,Item Code, Description KH, Description EN, Brand, UOM Stock, Cost, Status, Item Type, Material Type");
+
+            // Retrieve the material data from the database
+            var itemmaterials = GetItemMaterials();
+            foreach (var item in itemmaterials)
+            {
+                csvContent.AppendLine($"{item.Groups}, {item.Subgroup},{item.ItemCode},{item.DescriptionKh},{item.DescriptionEn},{item.Brand},{item.UomStock},{item.Cost},{item.Statuses},{item.Itemtype},{item.Materialtype}");
+            }
+
+            // Write the generated CSV content to a file on the desktop
+            System.IO.File.WriteAllText(filePath, csvContent.ToString());
+
+            // Read the file and return it as a downloadable file
+            var fileBytes = System.IO.File.ReadAllBytes(filePath);
+            return File(fileBytes, "text/csv", fileName);
+        }
+
+        // Method to get material data from the database
+        private List<Itemsmaterial> GetItemMaterials()
+        {
+            // Fetch only the MaterialName and MaterialStatus columns from the database
+            return _context.Itemsmaterials
+                           .Select(m => new Itemsmaterial
+                           {
+                               Groups = m.Groups,
+                               Subgroup = m.Subgroup,
+                               ItemCode = m.ItemCode,
+                               DescriptionKh = m.DescriptionKh,
+                               DescriptionEn = m.DescriptionEn,
+                               Brand = m.Brand,
+                               UomStock = m.UomStock,
+                               Cost = m.Cost,
+                               Statuses = m.Statuses,
+                               Itemtype = m.Itemtype,
+                               Materialtype = m.Materialtype                        
+                           })
+                           .ToList();
         }
 
         // POST: Itemsmaterials/Create

@@ -24,8 +24,12 @@
         <div class="card-header d-flex justify-content-between align-items-center">
             <a class="navbar-brand mb-0">SupplierItem</a>
             <div>
-                <button type="button" class="rounded-pill list-unstyled btn-light border border-secondary me-2 p-2" data-bs-toggle="modal" data-bs-target="#addNewModal">Add New</button>
-                <button class="rounded-pill list-unstyled btn-light border border-secondary me-2 p-2" type="button" asp-action="Subcontractors">Download</button>      
+                <button type="button" class="rounded-pill list-unstyled btn-light border border-secondary me-2 p-2" data-bs-toggle="modal" data-bs-target="#addNewModal">
+                    Add New
+                </button>
+                <a class="rounded-pill list-unstyled btn-light border border-secondary me-2 p-2 text-decoration-none" asp-area="" asp-controller="SupplierItems" asp-action="Download">
+                    Download
+                </a>
             </div>
         </div>
 

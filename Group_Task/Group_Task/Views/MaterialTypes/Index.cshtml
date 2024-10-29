@@ -5,6 +5,9 @@
 
 @{
     ViewData["Title"] = "Index";
+    var db = new TestDbContext();
+    var workingType = from w in db.WorkingTypes select new SelectListItem { Value = w.Id.ToString(), Text = w.Names };
+
 }
 
 <p>
@@ -37,7 +40,7 @@
                         <!--<a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#addNewModal">Add New</a>-->
                         <a class="nav-link text-white" asp-area="" asp-controller="MaterialTypes" asp-action="Create">Add New</a>
                     </li>
-                    <li><a class="dropdown-item" href="#">Download</a></li>
+                    <li><a class="dropdown-item" asp-area="" asp-controller="MaterialTypes" asp-action="Download">Download</a></li>
                     <li><a class="dropdown-item" href="#">Download Example</a></li>
                     <li>
                         <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#upload">Upload</a>
@@ -171,11 +174,7 @@
                     <div class="row mb-3">
                         <label for="supplierStatus" class="col-sm-4 col-form-label"><strong>Working Type</strong> <span class="required" style="color:red;">*</span></label>
                         <div class="col-sm-8">
-                            <select class="form-select" id="supplierStatus" required>
-                                <option value="" selected disabled>Please choose</option>
-                                <option value="active">example</option>
-                                <option value="inactive">example</option>
-                            </select>
+                            @Html.DropDownList("TaskName", workingType, new { @class = "form-control" })
                         </div>
                     </div>
                     <!-- Document Upload -->
