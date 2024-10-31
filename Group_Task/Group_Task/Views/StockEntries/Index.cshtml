@@ -8,6 +8,12 @@
     var db = new TestDbContext();
     //get name supplier from table suppliers 
     var supplier = from s in db.Suppliers select new SelectListItem { Value = s.Id.ToString(), Text = s.Names };
+    //get warehouse
+    var warehouse = from w in db.Warehouses select new SelectListItem { Value = w.IdWarehouse.ToString(), Text = w.NameWarehouse };
+    //get items material
+    var itemmaterial = from i in db.Itemsmaterials select new SelectListItem { Value = i.ItemId.ToString(), Text = i.DescriptionKh };
+    //get reference no
+    var reference = from r in db.StockTransfers select new SelectListItem { Value = r.Id.ToString(), Text = r.ReferenceNo };
 }
 
 <div class="page-bar">
@@ -106,37 +112,38 @@
             <!-- Modal Body with Form -->
             <div class="modal-body p-4" style="overflow-y: auto;">
                 <!-- Added scroll for content -->
-                <form>
+                <form asp-action="Create">
                     <div class="row mb-3" style="border: 1px solid #dee2e6; border-radius: 5px; padding: 15px; background-color: #f8f9fa;">
                         <!-- Left Column (Reference No, Transaction Date, Supplier) -->
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label for="referenceNo" class="form-label"><b>Reference No.</b></label>
-                                <input type="text" class="form-control" id="referenceNo" placeholder="Enter reference number" required>
+                                <label for="ReferenceNo" class="form-label"><b>Reference No.</b></label>
+                                <!--<input type="text" class="form-control" id="referenceNo" placeholder="Enter reference number" required>-->
+                                @Html.DropDownList("Reference", reference, new { @class = "form-control" })
                             </div>
 
                             <div class="mb-3">
-                                <label for="transactionDate" class="form-label"><b>Transaction Date</b></label>
+                                <label for="TransactionDate" class="form-label"><b>Transaction Date</b></label>
                                 <input type="date" class="form-control" id="transactionDate" placeholder="Enter transaction date" required>
                             </div>
 
                             <div class="mb-3">
-                                <label for="supplier" class="form-label"><b>Suppliers</b></label>
-                                @Html.DropDownList("TaskName", supplier, new { @class = "form-control" })
+                                <label for="Supplier" class="form-label"><b>Suppliers</b></label>
+                                @Html.DropDownList("Supplier", supplier, new { @class = "form-control" })
                             </div>
                         </div>
 
                         <!-- Right Column (Description) -->
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label for="description" class="form-label"><strong>Description</strong> <span class="text-danger">*</span></label>
-                                <textarea class="form-control" id="description" rows="7" placeholder="Enter your description" required></textarea>
+                                <label for="Descriptions" class="form-label"><strong>Description</strong> <span class="text-danger">*</span></label>
+                                <textarea class="form-control" id="description" rows="7" placeholder="Enter your description" ></textarea>
                             </div>
                         </div>
                     </div>
                     <div class="mb-3">
                         <div class="input-group">
-                            <input type="text" class="form-control" id="scan" required>
+                            <input type="text" class="form-control" id="scan" >
                             <button class="btn btn-primary" type="button" id="scanButton">Scan Now</button>
                         </div>
                     </div>
@@ -154,25 +161,18 @@
                                     <th>Cost</th>
                                     <th>Reference</th>
                                     <th class="d-flex justify-content-center align-items-center">
-                                        <button type="submit" class="btn btn-primary"><b>+</b></button>
+                                        <button type="button" id="addRow" class="btn btn-primary"><b>+</b></button>
                                     </th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="tableBody">
                                 <tr>
                                     <td><b>001</b></td>
                                     <td>
-                                        <select class="form-control form-control-sm">
-                                            <option value="">Please choose</option>
-                                            <option value="material1">warehouse 1</option>
-                                        </select>
+                                        @Html.DropDownList("Warehouse", warehouse, new { @class = "form-control" })
                                     </td>
                                     <td>
-                                        <select class="form-control form-control-sm">
-                                            <option value="">Please choose</option>
-                                            <option value="material1">Material 1</option>
-                                            <option value="material2">Material 2</option>
-                                        </select>
+                                        @Html.DropDownList("ItemMaterial", itemmaterial, new { @class = "form-control" })
                                     </td>
                                     <td>
                                         <select class="form-control form-control-sm">
@@ -198,18 +198,102 @@
                                         <input type="text" class="form-control form-control-sm" />
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                                        <button type="button" class="btn btn-danger btn-sm deleteRow">Delete</button>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
 
+                    <script>
+
+                        //Code for add new rows on table
+                        $(document).ready(function () {
+                            let rowCount = 1; 
+
+                            $('#addRow').click(function () {
+                                rowCount++;                               
+                                const newRow = `
+                                        <tr>
+                                            <td><b>${String(rowCount).padStart(3, '0')}</b></td>
+                                            <td>
+                                                @Html.DropDownList("Warehouse", warehouse, new { @class = "form-control" })
+                                            </td>
+                                            <td>
+                                                @Html.DropDownList("ItemMaterial", itemmaterial, new { @class = "form-control" })
+                                            </td>
+                                            <td>
+                                                <select class="form-control form-control-sm">
+                                                    <option value="">Please choose</option>
+                                                    <option value="brand1">Brand 1</option>
+                                                    <option value="brand2">Brand 2</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <select class="form-control form-control-sm">
+                                                    <option value="">Please choose</option>
+                                                    <option value="uom1">UOM 1</option>
+                                                    <option value="uom2">UOM 2</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <input type="number" class="form-control form-control-sm" min="0" step="0.01" />
+                                            </td>
+                                            <td>
+                                                <input type="number" class="form-control form-control-sm" min="0" step="0.01" />
+                                            </td>
+                                            <td>
+                                                <input type="text" class="form-control form-control-sm" />
+                                            </td>
+                                            <td>
+                                                <button type="button" class="btn btn-danger btn-sm deleteRow">Delete</button>
+                                            </td>
+                                        </tr>`;                               
+                                $('#tableBody').append(newRow);
+                            });
+
+                            // Remove row on delete button click
+                            $('#tableBody').on('click', '.deleteRow', function () {
+                                $(this).closest('tr').remove();
+                            });
+                        });
+
+                        //Display days
+                        const today = new Date();                   
+                        const formattedDate = today.toISOString().split('T')[0];
+                        // Set the value of the input field to today's date
+                        document.getElementById("transactionDate").value = formattedDate;
+
+
+                        //Code for store data on LocalStorage
+                        $('form').on('submit', function (event) {
+                            event.preventDefault(); 
+
+                            const tableData = [];
+                            $('#tableBody tr').each(function () {
+                                const rowData = {
+                                    warehouse: $(this).find('select[name="Warehouse"]').val(),
+                                    itemMaterial: $(this).find('select[name="ItemMaterial"]').val(),
+                                    brand: $(this).find('select').eq(1).val(),
+                                    uom: $(this).find('select').eq(2).val(),
+                                    qty: $(this).find('input').eq(0).val(),
+                                    cost: $(this).find('input').eq(1).val(),
+                                    reference: $(this).find('input').eq(2).val(),
+                                };
+                                tableData.push(rowData);
+                            });
+
+                            // Store data in localStorage
+                            localStorage.setItem('stockEntryData', JSON.stringify(tableData));
+                            window.location.href = "/StockEntries";
+                        });
+                    </script>
+
                     <!-- Submit Button and Cancel -->
                     <div class="d-flex justify-content-end mt-4">
                         <button type="button" class="btn btn-danger me-2" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-primary me-2">Save & New</button>
-                        <button type="submit" class="btn btn-primary">Save</button>
+                        <button type="submit" class="btn btn-primary me-2" value="Create">Save & New</button>
+                        <button type="submit" id="submit" class="btn btn-primary" value="Create">Save</button>
                     </div>
                 </form>
 

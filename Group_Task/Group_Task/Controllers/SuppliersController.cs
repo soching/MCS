@@ -91,13 +91,13 @@ namespace Items_Material.Controllers
 
             // Generate CSV content for download using StringBuilder
             var csvContent = new StringBuilder();
-            csvContent.AppendLine("Name,Cheque Name,Tel,Email, Term Payment, Address, Status");
+            csvContent.AppendLine("Name,Cheque Name,Tel,Email, Term Payment, Address");
 
             // Retrieve the material data from the database
             var suppliers = GetSuppliers();
             foreach (var supplier in suppliers)
             {
-                csvContent.AppendLine($"{supplier.Names},{supplier.ChequeName},{supplier.Tel},{supplier.Email},{supplier.Termpyment},{supplier.Addresses},{supplier.Statuses}");
+                csvContent.AppendLine($"{supplier.Names},{supplier.ChequeName},{supplier.Tel},{supplier.Email},{supplier.Termpyment},{supplier.Addresses}");
             }
 
             // Write the generated CSV content to a file on the desktop
@@ -120,8 +120,7 @@ namespace Items_Material.Controllers
                                Tel = s.Tel,
                                Email = s.Email,
                                Termpyment = s.Termpyment,
-                               Addresses = s.Addresses,
-                               Statuses = s.Statuses                          
+                               Addresses = s.Addresses                                                       
                            })
                            .ToList();
         }
