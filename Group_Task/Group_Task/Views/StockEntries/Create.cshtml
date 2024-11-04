@@ -4,36 +4,157 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
 
-<h4>StockEntry</h4>
-<hr />
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
+    <div class="col-md-12">
+        <form asp-action="Create" method="post" id="stockEntryForm">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="ReferenceNo" class="control-label"></label>
-                <input asp-for="ReferenceNo" class="form-control" />
-                <span asp-validation-for="ReferenceNo" class="text-danger"></span>
+
+            <!-- Form Section -->
+            <div class="container mt-3">
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <div class="form-section">
+                            <div class="row">
+                                <!-- First Column with 3 inputs stacked vertically -->
+                                <div class="col-md-6">
+                                    <div class="form-group mb-3">
+                                        <label asp-for="ReferenceNo" class="control-label"></label>
+                                        <input asp-for="ReferenceNo" class="form-control" style="width: 100%;" />
+                                        <span asp-validation-for="ReferenceNo" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label asp-for="TransactionDate" class="control-label"></label>
+                                        <input asp-for="TransactionDate" class="form-control" id="transactionDate" style="width: 100%;" />
+                                        <span asp-validation-for="TransactionDate" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label asp-for="Supplier" class="control-label"></label>
+                                        <input asp-for="Supplier" class="form-control" style="width: 100%;" />
+                                        <span asp-validation-for="Supplier" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+                                <!-- Second Column with expanded Description input -->
+                                <div class="col-md-6">
+                                    <div class="form-group mb-3">
+                                        <label asp-for="Descriptions" class="control-label"></label>
+                                        <textarea asp-for="Descriptions" class="form-control" rows="5" style="height: 195px; width: 100%;"></textarea>
+                                        <span asp-validation-for="Descriptions" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="TransactionDate" class="control-label"></label>
-                <input asp-for="TransactionDate" class="form-control" />
-                <span asp-validation-for="TransactionDate" class="text-danger"></span>
+
+
+            <!-- Table Section -->
+            <div class="table-section mt-4">
+                <div class="modal-body">
+                    <table class="table table-bordered table-striped table-hover">
+                        <thead class="bg-secondary text-white">
+                            <tr class="text-center">
+                                <th>No.</th>
+                                <th>Warehouse</th>
+                                <th>Items Material</th>
+                                <th>Brand</th>
+                                <th>UOM</th>
+                                <th>Qty</th>
+                                <th>Cost</th>
+                                <th>Reference</th>
+                                <th class="d-flex justify-content-center align-items-center">
+                                    <button type="button" id="addRow" class="btn btn-primary"><b>+</b></button>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody"></tbody>
+                    </table>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Supplier" class="control-label"></label>
-                <input asp-for="Supplier" class="form-control" />
-                <span asp-validation-for="Supplier" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Descriptions" class="control-label"></label>
-                <input asp-for="Descriptions" class="form-control" />
-                <span asp-validation-for="Descriptions" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+
+            <!-- JavaScript Code for Adding Rows and Local Storage -->
+            <script>
+                $(document).ready(function () {
+                    function renumberRows() {
+                        $('#tableBody tr').each(function (index) {
+                            $(this).find('td:first-child').html(`<b>${String(index + 1).padStart(3, '0')}</b>`);
+                        });
+                    }
+
+                    $('#addRow').click(function () {
+                        const newRow = `
+                                           <tr>
+                                                <td><b>001</b></td>
+                                                <td><input type="text" class="form-control form-control-sm" name="Warehouse" /></td>
+                                                <td><input type="text" class="form-control form-control-sm" name="ItemMaterial" /></td>
+                                                  <td>
+                                                     <select class="form-control form-control-sm" name="Brand">
+                                                             <option value="">Please choose</option>
+                                                             <option value="brand1">Brand 1</option>
+                                                             <option value="brand2">Brand 2</option>
+                                                     </select>
+                                                   </td>
+                                                   <td>
+                                                      <select class="form-control form-control-sm" name="UOM">
+                                                              <option value="">Please choose</option>
+                                                              <option value="uom1">UOM 1</option>
+                                                              <option value="uom2">UOM 2</option>
+                                                       </select>
+                                                    </td>
+                                                    <td><input type="number" class="form-control form-control-sm" name="Qty" min="0" step="0.01" /></td>
+                                                    <td><input type="number" class="form-control form-control-sm" name="Cost" min="0" step="0.01" /></td>
+                                                    <td><input type="text" class="form-control form-control-sm" name="Reference" /></td>
+                                                    <td><button type="button" class="btn btn-danger btn-sm deleteRow">Delete</button></td>
+                                               </tr>`;
+
+                        $('#tableBody').append(newRow);
+                        renumberRows();
+                    });
+
+                    //Code for delete row in table
+                    $('#tableBody').on('click', '.deleteRow', function () {
+                        $(this).closest('tr').remove();
+                        renumberRows();
+                    });
+
+                    // Code for store on local
+                    $('#stockEntryForm').on('submit', function (event) {
+                        const formData = {
+                            referenceNo: $('input[name="ReferenceNo"]').val(),
+                            transactionDate: $('#transactionDate').val(),
+                            supplier: $('input[name="Supplier"]').val(),
+                            descriptions: $('input[name="Descriptions"]').val(),
+                        };
+
+                        const tableData = $('#tableBody tr').map(function () {
+                            return {
+                                warehouse: $(this).find('input[name="Warehouse"]').val(),
+                                itemMaterial: $(this).find('input[name="ItemMaterial"]').val(),
+                                brand: $(this).find('select[name="Brand"]').val(),
+                                uom: $(this).find('select[name="UOM"]').val(),
+                                qty: $(this).find('input[name="Qty"]').val(),
+                                cost: $(this).find('input[name="Cost"]').val(),
+                                reference: $(this).find('input[name="Reference"]').val(),
+                            };
+                        }).get();
+
+                        const stockEntryData = {
+                            formData: formData,
+                            tableData: tableData
+                        };
+
+                        localStorage.setItem('stockEntryData', JSON.stringify(stockEntryData));
+                    });
+                });
+            </script>
+
+            <!-- Submit and Cancel Buttons -->
+            <div class="d-flex justify-content-end mt-4">
+                <button type="button" class="btn btn-danger me-2" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary" value="Create">Save</button>
             </div>
         </form>
     </div>
