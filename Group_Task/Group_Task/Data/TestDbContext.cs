@@ -95,6 +95,8 @@ namespace Group_Task.Models
         public virtual DbSet<LocationTask> LocationTasks { get; set; } = null!;
         public virtual DbSet<LogRecord> LogRecords { get; set; } = null!;
         public virtual DbSet<LogTime> LogTimes { get; set; } = null!;
+        public virtual DbSet<ManageBlock> ManageBlocks { get; set; } = null!;
+        public virtual DbSet<Master> Masters { get; set; } = null!;
         public virtual DbSet<MaterialType> MaterialTypes { get; set; } = null!;
         public virtual DbSet<Measure> Measures { get; set; } = null!;
         public virtual DbSet<Module> Modules { get; set; } = null!;
@@ -102,6 +104,7 @@ namespace Group_Task.Models
         public virtual DbSet<MonthlyReward> MonthlyRewards { get; set; } = null!;
         public virtual DbSet<MonthlyRewardDetail> MonthlyRewardDetails { get; set; } = null!;
         public virtual DbSet<OpenScope> OpenScopes { get; set; } = null!;
+        //public virtual DbSet<OpenScopeDetail> OpenScopeDetails { get; set; } = null!;
         public virtual DbSet<PayMonth> PayMonths { get; set; } = null!;
         public virtual DbSet<Payment> Payments { get; set; } = null!;
         public virtual DbSet<PaymentDetail> PaymentDetails { get; set; } = null!;
@@ -230,6 +233,15 @@ namespace Group_Task.Models
                 entity.HasKey(e => new { e.TaskMasterId, e.MasterPhotoId });
             });
 
+            modelBuilder.Entity<Constructor>(entity =>
+            {
+                entity.Property(e => e.ConstructorCode).UseCollation("SQL_Latin1_General_CP850_BIN");
+
+                entity.Property(e => e.ConstructorName).UseCollation("SQL_Latin1_General_CP850_BIN");
+
+                entity.Property(e => e.Phone).UseCollation("SQL_Latin1_General_CP850_BIN");
+            });
+
             modelBuilder.Entity<ConstructorV>(entity =>
             {
                 entity.ToView("Constructor_V");
@@ -271,16 +283,47 @@ namespace Group_Task.Models
                     .HasName("PK_GLDatas");
             });
 
+            modelBuilder.Entity<GroupTask>(entity =>
+            {
+                entity.Property(e => e.GroupName).UseCollation("SQL_Latin1_General_CP850_BIN");
+
+                //entity.Property(e => e.HouseType).UseCollation("SQL_Latin1_General_CP850_BIN");
+            });
+
+            modelBuilder.Entity<GroupTaskMaster>(entity =>
+            {
+                entity.Property(e => e.GroupNameEn).UseCollation("SQL_Latin1_General_CP850_BIN");
+
+                entity.Property(e => e.TaskGroupName).UseCollation("SQL_Latin1_General_CP850_BIN");
+            });
+
             modelBuilder.Entity<HouseInfo>(entity =>
             {
                 entity.HasKey(e => e.HouseId)
                     .HasName("PK_HouseInfoes");
+
+                entity.Property(e => e.BlockNo).UseCollation("SQL_Latin1_General_CP850_BIN");
+
+                entity.Property(e => e.BuildingNo).UseCollation("SQL_Latin1_General_CP850_BIN");
+
+                entity.Property(e => e.HouseNo).UseCollation("SQL_Latin1_General_CP850_BIN");
+
+                entity.Property(e => e.Label).UseCollation("SQL_Latin1_General_CP850_BIN");
+
+                entity.Property(e => e.StreetNo).UseCollation("SQL_Latin1_General_CP850_BIN");
 
                 entity.HasOne(d => d.HouseType)
                     .WithMany(p => p.HouseInfos)
                     .HasForeignKey(d => d.HouseTypeId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_HouseInfo_House_Type");
+            });
+
+            modelBuilder.Entity<HouseType>(entity =>
+            {
+                entity.Property(e => e.Abbreviation).UseCollation("SQL_Latin1_General_CP850_BIN");
+
+                entity.Property(e => e.HouseTypeName).UseCollation("SQL_Latin1_General_CP850_BIN");
             });
 
             modelBuilder.Entity<Invoice>(entity =>
@@ -359,7 +402,11 @@ namespace Group_Task.Models
 
             modelBuilder.Entity<Project>(entity =>
             {
+                entity.Property(e => e.Abbreviation).UseCollation("SQL_Latin1_General_CP850_BIN");
+
                 entity.Property(e => e.DefaultProject).HasComment("Selected in Combo Box");
+
+                entity.Property(e => e.ProjectName).UseCollation("SQL_Latin1_General_CP850_BIN");
             });
 
             modelBuilder.Entity<PurchaseOrder>(entity =>
@@ -401,8 +448,21 @@ namespace Group_Task.Models
                     .HasConstraintName("FK_Setup_Floor_Setup_Master");
             });
 
+            modelBuilder.Entity<SetupMaster>(entity =>
+            {
+                entity.Property(e => e.BoqCode).UseCollation("SQL_Latin1_General_CP850_BIN");
+
+                entity.Property(e => e.LoaCode).UseCollation("SQL_Latin1_General_CP850_BIN");
+
+                entity.Property(e => e.TaskName).UseCollation("SQL_Latin1_General_CP850_BIN");
+            });
+
             modelBuilder.Entity<SetupTask>(entity =>
             {
+                entity.Property(e => e.LoaCode).UseCollation("SQL_Latin1_General_CP850_BIN");
+
+                entity.Property(e => e.TaskName).UseCollation("SQL_Latin1_General_CP850_BIN");
+
                 entity.HasOne(d => d.SetupFloor)
                     .WithMany(p => p.SetupTasks)
                     .HasForeignKey(d => d.SetupFloorId)
@@ -431,6 +491,15 @@ namespace Group_Task.Models
                     .WithMany(p => p.Tasks)
                     .HasForeignKey(d => d.FloorId)
                     .HasConstraintName("FK_Tasks_Floor");
+            });
+
+            modelBuilder.Entity<TaskMaster>(entity =>
+            {
+                entity.Property(e => e.TaskCode).UseCollation("SQL_Latin1_General_CP850_BIN");
+
+                entity.Property(e => e.TaskName).UseCollation("SQL_Latin1_General_CP850_BIN");
+
+                entity.Property(e => e.TaskType).UseCollation("SQL_Latin1_General_CP850_BIN");
             });
 
             modelBuilder.Entity<Transaction>(entity =>
@@ -505,6 +574,11 @@ namespace Group_Task.Models
             {
                 entity.HasKey(e => e.Rowid)
                     .HasName("PK_weekends");
+            });
+
+            modelBuilder.Entity<Zone>(entity =>
+            {
+                entity.Property(e => e.ZoneName).UseCollation("SQL_Latin1_General_CP850_BIN");
             });
 
             OnModelCreatingPartial(modelBuilder);

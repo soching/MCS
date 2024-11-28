@@ -1,0 +1,108 @@
+﻿@model Group_Task.Models.Master
+
+@{
+    ViewData["Title"] = "Create";
+    var db = new TestDbContext();
+    var status = from s in db.Masters select new SelectListItem { Value = s.Id.ToString(), Text = s.Status };
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Create" method="post" id="stockEntryForm">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <!-- Wrapper with background, border radius, and shadow -->
+            <div class="container p-4" style="background-color: #f9f9f9; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                <!-- Form fields -->
+                <div class="row mb-2 align-items-center">
+                    <div class="col-md-2">
+                        <label asp-for="Transactions" class="control-label mb-0" style="font-weight: bold;">Transactions</label>
+                    </div>
+                    <div class="col-md-4">
+                        <input asp-for="Transactions" class="form-control form-control-sm" />
+                        <span asp-validation-for="Transactions" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row mb-2 align-items-center">
+                    <div class="col-md-2">
+                        <label asp-for="Item" class="control-label mb-0" style="font-weight: bold;">Item</label>
+                    </div>
+                    <div class="col-md-4">
+                        <input asp-for="Item" class="form-control form-control-sm" />
+                        <span asp-validation-for="Item" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row mb-2 align-items-center">
+                    <div class="col-md-2">
+                        <label asp-for="Qty" class="control-label mb-0" style="font-weight: bold;">Quantity</label>
+                    </div>
+                    <div class="col-md-4">
+                        <input asp-for="Qty" class="form-control form-control-sm" />
+                        <span asp-validation-for="Qty" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row mb-2 align-items-center">
+                    <div class="col-md-2">
+                        <label asp-for="Price" class="control-label mb-0" style="font-weight: bold;">Price</label>
+                    </div>
+                    <div class="col-md-4">
+                        <input asp-for="Price" class="form-control form-control-sm" />
+                        <span asp-validation-for="Price" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row mb-2 align-items-center">
+                    <div class="col-md-2">
+                        <label asp-for="Status" class="control-label mb-0" style="font-weight: bold;">Status</label>
+                    </div>
+                    <div class="col-md-4 d-flex gap-3">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" asp-for="Status" id="stockIn" value="Stock In">
+                            <label class="form-check-label" for="stockIn">Stock In</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" asp-for="Status" id="stockOut" value="Stock Out">
+                            <label class="form-check-label" for="stockOut">Stock Out</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" asp-for="Status" id="adjustment" value="Adjustment">
+                            <label class="form-check-label" for="adjustment">Adjustment</label>
+                        </div>
+                        <span asp-validation-for="Status" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row mb-2 align-items-center">
+                    <div class="col-md-2">
+                        <label asp-for="Date" class="control-label mb-0" style="font-weight: bold;">Date</label>
+                    </div>
+                    <div class="col-md-4">
+                        <input asp-for="Date" class="form-control form-control-sm" type="date" />
+                        <span asp-validation-for="Date" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row mb-2 align-items-center">
+                    <div class="col-md-2">
+                        <label asp-for="Description" class="control-label mb-0" style="font-weight: bold;">Description</label>
+                    </div>
+                    <div class="col-md-4">
+                        <textarea asp-for="Description" class="form-control form-control-sm" rows="2" style="resize: none;"></textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <!-- Buttons -->
+                <div class="row mt-4">
+                    <div class="col-md-12 d-flex justify-content-end gap-3">
+                        <a asp-action="Index" class="btn btn-secondary btn-sm" style="font-weight: bold;">Back to List</a>
+                        <button type="submit" class="btn btn-primary btn-sm" style="font-weight: bold;">Save</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

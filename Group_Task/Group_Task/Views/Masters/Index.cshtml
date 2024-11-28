@@ -1,0 +1,112 @@
+﻿@model PagedList<Group_Task.Models.Master>
+@using X.PagedList;
+@using X.PagedList.Mvc.Core;
+@using X.PagedList.Mvc.Core.Common;
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="my-3">
+    <div class="card">
+        <div class="card-body">
+            <div class="d-flex align-items-center" style="margin-bottom:10px;">
+                <form method="get" asp-action="Index" class="me-2">
+                    <input type="search"
+                           placeholder="Enter reference no, supplier, description"
+                           value="@ViewData["Getemployeedetails"]"
+                           name="Empsearch"
+                           class="form-control form-control-sm"
+                           style="width: 250px; padding: 5px; font-size: 14px; height: 35px;" />
+                </form>
+
+                <div>
+                    <select class="form-select form-select-sm" id="zone" style="width: 250px; height: 35px;">
+                        <option selected hidden>Select Status</option>
+                        <option value="Stock In">Stock In</option>
+                        <option value="Stock Out">Stock Out</option>
+                        <option value="Adjustment">Adjustment</option>
+                    </select>
+                </div>
+
+                <div  style="margin-left:900px">
+                    <button type="button" class="rounded-pill list-unstyled btn-light border border-secondary me-2 p-2"><a asp-action="Create">Add New</a></button>
+                </div>
+            </div>
+
+            <table class="table table-bordered table-striped" id="dataTable">
+                <thead>
+                    <tr>
+                        <th>Transactions</th>
+                        <th>Item</th>
+                        <th>Qty</th>
+                        <th>Price</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                        <th>Description</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr class="status-row" data-status="@item.Status">
+                            <td>@Html.DisplayFor(modelItem => item.Transactions)</td>
+                            <td class="text-center">@Html.DisplayFor(modelItem => item.Item)</td>
+                            <td class="text-center">@Html.DisplayFor(modelItem => item.Qty)</td>
+                            <td class="text-center">@Html.DisplayFor(modelItem => item.Price)<span>$</span></td>
+                            <td class="text-center">
+                                @if (item.Status == "Stock In")
+                                {
+                                    <span  style="color: green;">@Html.DisplayFor(modelItem => item.Status)</span>
+                                }
+                                else if (item.Status == "Stock Out")
+                                {
+                                    <span style="color: red;">@Html.DisplayFor(modelItem => item.Status)</span>
+                                }
+                                else if (item.Status == "Adjustment")
+                                {
+                                    <span style="color: blue;">@Html.DisplayFor(modelItem => item.Status)</span>
+                                }
+                                else
+                                {
+                                    @Html.DisplayFor(modelItem => item.Status)
+                                }
+                            </td>
+                            <td>@Html.DisplayFor(modelItem => item.Date)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!--Used it for select display follow status-->
+<script>
+    document.getElementById("zone").addEventListener("change", function () {
+        var selectedStatus = this.value;
+        var rows = document.querySelectorAll("#dataTable .status-row");
+
+        rows.forEach(row => {
+            if (selectedStatus === "Select Status" || row.getAttribute("data-status") === selectedStatus) {
+                row.style.display = "";
+            } else {
+                row.style.display = "none";
+            }
+        });
+    });
+</script>
+
+@Html.PagedListPager(Model, page => Url.Action("index", "Masters",
+                     new { page = page }),
+                                    new PagedListRenderOptions
+                                {
+                                    LiElementClasses = new string[] { "page-item" },
+                                    PageClasses = new string[] { "page-link" }
+                                })
